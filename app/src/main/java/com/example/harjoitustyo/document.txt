@@ -1,0 +1,20 @@
+Widget ids:
+    MainActivity:
+        searchButton = searchButton
+        editText = editMunicipality
+        RecyclerView = TextView for items ?
+    TabActivity:
+        ViewPager2 = viewArea
+        tabLayout = tabLayout
+            tabItem1 = tabInfo
+            tabItem2 = tabCompare
+            tabItem3 = tabQuiz
+
+
+    Fragment 1 = InfoFragment:
+
+    Fragment 2 = CompareFragment:
+
+    Fragment 3 = QuizFragment:
+
+
