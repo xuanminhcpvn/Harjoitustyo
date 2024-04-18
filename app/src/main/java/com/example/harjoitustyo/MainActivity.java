@@ -53,22 +53,4 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    /*
-    private View.OnClickListener listener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.searchButton:
-                    break;
-
-            }
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, fragment)
-                    .commit();
-
-        }
-    }; */
-
-
 }
