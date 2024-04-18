@@ -1,7 +1,9 @@
 package com.example.harjoitustyo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +56,65 @@ public class MainActivity extends AppCompatActivity {
             // switch to tabActivity
             Intent intent = new Intent(this, TabActivity.class);
             startActivity(intent);
+
+
+            Log.d("LUT", "Nappula toimii");
+            Context context = this;
+
+            PopulationDataRetriever pr = new PopulationDataRetriever();
+            WeatherDataRetriever wr = new WeatherDataRetriever();
+
+            String location = municipality.getText().toString();
+
+            ExecutorService service = Executors.newSingleThreadExecutor();
+
+            service.execute(new Runnable() {
+                @Override
+                public void run() {
+                    ArrayList<PopulationData> populationData = pr.getData(context, location);
+                    WeatherData weatherData = wr.getWeatherData(location);
+
+                    if (populationData == null) {
+                        return;
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String pop = "";
+                            for(PopulationData data : populationData) {
+                                pop = pop + data.getYear() + ": " + data.getPopulation() + "\n";
+                            }
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("population",pop);
+
+                            // txtPopulationData.setText(s);
+                            // TODO instead we bundle and send it to Fragment
+                                String weather = weatherData.getName() + "\n" +
+                                            "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() +")\n" +
+                                            "Lämpötila: " + weatherData.getTemperature() + " K\n" +
+                                            "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n"
+                            ;
+
+                            // We create Bundle here
+                            bundle.putString("weatherInfo",weather);
+
+                            // TODO jotta tieto välittyy toiselle activiteetille
+                            intent.putExtra("population",pop);
+                            intent.putExtra("weatherInfo",weather);
+
+
+
+
+                        }
+
+                    });
+
+
+                    //Log.d("LUT", "Data haettu");
+                }
+            });
+
 
         }
 

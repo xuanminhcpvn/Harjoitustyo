@@ -2,6 +2,9 @@ package com.example.harjoitustyo;
 
 // import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -9,7 +12,7 @@ import java.net.URL;
 public class WeatherDataRetriever {
 
 
-   /*  private final String API_KEY = "d692b6ac06b015b4629e153852b1c742";
+    private final String API_KEY = "d692b6ac06b015b4629e153852b1c742";
     private final String CONVERTER_BASE_URL = "https://api.openweathermap.org/geo/1.0/direct?q=%s&limit=5&appid=%s";
     private final String WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s";
 
@@ -53,6 +56,4 @@ public class WeatherDataRetriever {
 
 }
 
-*/
 
-}

@@ -5,14 +5,22 @@ public class PopulationData {
         private String name;
         private String main;
         private String description;
-        private String population;
 
-        public PopulationData(String n, String m, String d, String p) {
+        private int year;
+        private int population;
+
+        public PopulationData(String n, String m, String d, int p) {
             name = n;
             main = m;
             description = d;
             population = p;
 
+        }
+
+        // Muokattu sopivaksi opettajan versioon
+        public PopulationData(int y, int p) {
+            year = y;
+            population = p;
         }
 
         public String getName() {
@@ -39,13 +47,15 @@ public class PopulationData {
             this.description = description;
         }
 
-        public String getPopulation() {
+        public int getPopulation() {
             return population;
         }
 
-        public void setPopulation(String Population) {
+        public void setPopulation(int population) {
             this.population = population;
         }
 
-
+        public int getYear() {
+        return year;
+        }
 }
