@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             PopulationDataRetriever pr = new PopulationDataRetriever();
             WeatherDataRetriever wr = new WeatherDataRetriever();
 
+
             String location = municipality.getText().toString();
 
             ExecutorService service = Executors.newSingleThreadExecutor();
