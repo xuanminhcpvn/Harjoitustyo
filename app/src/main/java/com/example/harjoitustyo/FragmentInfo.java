@@ -65,8 +65,10 @@ public class FragmentInfo extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
-        txtPopulation = view.findViewById(R.id.txtPopulation);
-        txtWeather = view.findViewById(R.id.txtWeather);
+
+
+        // Trying other method, since bundle.getString can't be implemented in fragment IDK?
+        /*
         Bundle bundle = getArguments();
         if (bundle != null) {
             String populationInfo = bundle.getString("population");
@@ -75,6 +77,21 @@ public class FragmentInfo extends Fragment {
             txtPopulation.setText(populationInfo);
             txtWeather.setText(weatherInfo);
         }
+         */
+
+        // TODO instead do this https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
+
+        TabActivity activity = (TabActivity) getActivity();
+
+        String populationData = activity.sendPopData();
+        String weatherData = activity.sendWeatherData();
+        txtPopulation = view.findViewById(R.id.txtPopulation);
+        txtPopulation.setText(populationData);
+
+        txtWeather = view.findViewById(R.id.txtWeather);
+        txtWeather.setText(weatherData);
+
+
         return view;
     }
 
