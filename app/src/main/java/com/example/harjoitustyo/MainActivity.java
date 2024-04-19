@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             // switch to tabActivity
             Intent intent = new Intent(this, TabActivity.class);
-            startActivity(intent);
+
 
 
             Log.d("LUT", "Nappula toimii");
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population",pop);
                             intent.putExtra("weatherInfo",weather);
-
+                            startActivity(intent);
 
 
 

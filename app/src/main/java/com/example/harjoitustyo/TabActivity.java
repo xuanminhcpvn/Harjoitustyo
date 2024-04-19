@@ -13,6 +13,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class TabActivity extends AppCompatActivity {
 
+    // Define variables first
+    private String populationData;
+    private String weatherData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,23 @@ public class TabActivity extends AppCompatActivity {
         ViewPager2 viewArea = findViewById(R.id.viewArea);
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(this);
         viewArea.setAdapter(tabPagerAdapter);
+
+
+        // TODO Link: https://stackoverflow.com/questions/51917897/explanation-about-intent-getstringextra-and-intent-putextra-in-android-studio
+        /* TODO With getIntent().getStringExtra(Bundle Key)--> get information from other Activity
+        First have to put data in the original activity(Here it is main) to a Bundle package and
+         send it with comman putExtra() */
+        populationData = getIntent().getStringExtra("population");
+        weatherData = getIntent().getStringExtra("weatherInfo");
+
+
+
+
+        // One user suggest to create yourself sendData() method in activity to fragment
+        // Link https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
+        // Method is under tabLayout setup
+        // Next go to FragmentInfo
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -54,4 +74,14 @@ public class TabActivity extends AppCompatActivity {
         });
     }
 
+    public String sendPopData() {
+        return populationData;
+
     }
+
+    public String sendWeatherData(){
+        return weatherData;
+    }
+
+
+}
