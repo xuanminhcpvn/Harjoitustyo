@@ -36,7 +36,7 @@ public class TabActivity extends AppCompatActivity {
         // TODO Link: https://stackoverflow.com/questions/51917897/explanation-about-intent-getstringextra-and-intent-putextra-in-android-studio
         /* TODO With getIntent().getStringExtra(Bundle Key)--> get information from other Activity
         First have to put data in the original activity(Here it is main) to a Bundle package and
-         send it with comman putExtra() */
+         send it with command putExtra() */
         populationData = getIntent().getStringExtra("population");
         weatherData = getIntent().getStringExtra("weatherInfo");
 

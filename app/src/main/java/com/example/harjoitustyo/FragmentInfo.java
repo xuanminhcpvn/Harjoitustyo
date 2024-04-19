@@ -3,6 +3,8 @@ package com.example.harjoitustyo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,11 @@ public class FragmentInfo extends Fragment {
 
     private TextView txtPopulation;
     private TextView txtWeather;
+
+    private RecyclerView recyclerView;
+
+    private TabActivity activity;
+    private RecyclerView.Adapter adapter;
 
 
     public FragmentInfo() {
@@ -82,14 +89,25 @@ public class FragmentInfo extends Fragment {
         // TODO instead do this https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
 
         TabActivity activity = (TabActivity) getActivity();
-
         String populationData = activity.sendPopData();
         String weatherData = activity.sendWeatherData();
+
+
         txtPopulation = view.findViewById(R.id.txtPopulation);
         txtPopulation.setText(populationData);
 
         txtWeather = view.findViewById(R.id.txtWeather);
         txtWeather.setText(weatherData);
+
+        recyclerView = view.findViewById(R.id.rvInfo);
+        // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        // getApplicationContext sijaan getContext ???
+        adapter = new InfoRecyclerViewAdapter(getContext());
+        // RecyclerView.Adapter adapter = new GroceryListAdapter(getApplicationContext(), groceryStorage.getInstance().getGroceries());
+        recyclerView.setAdapter(adapter);
+
 
 
         return view;

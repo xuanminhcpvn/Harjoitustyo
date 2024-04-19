@@ -11,7 +11,7 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
 
 // TODO ALL textView and ImageView Component here
 
-    TextView weatherName, weatherMain, weatherDescription, weatherTemp, weatherWind;
+    TextView textPop, textEmploy, weatherName, weatherMain, weatherDescription, weatherTemp, weatherWind;
 
     ImageView imageWeather;
 
@@ -19,6 +19,7 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public InfoRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
+        textPop = itemView.findViewById(R.id.textPop);
         weatherName = itemView.findViewById(R.id.weatherName);
         weatherMain = itemView.findViewById(R.id.weatherMain);
         weatherDescription = itemView.findViewById(R.id.weatherDescription);
