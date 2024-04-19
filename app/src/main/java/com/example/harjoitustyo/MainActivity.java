@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             String location = municipality.getText().toString();
 
+
             ExecutorService service = Executors.newSingleThreadExecutor();
 
             service.execute(new Runnable() {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                             Bundle bundle = new Bundle();
                             bundle.putString("population",pop);
+                            bundle.putString("location",location);
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment

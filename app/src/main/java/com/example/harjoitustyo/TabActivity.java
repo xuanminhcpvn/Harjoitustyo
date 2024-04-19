@@ -16,6 +16,7 @@ public class TabActivity extends AppCompatActivity {
     // Define variables first
     private String populationData;
     private String weatherData;
+    private String location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class TabActivity extends AppCompatActivity {
          send it with command putExtra() */
         populationData = getIntent().getStringExtra("population");
         weatherData = getIntent().getStringExtra("weatherInfo");
-
+        location = getIntent().getStringExtra("location");
 
 
 
@@ -74,6 +75,10 @@ public class TabActivity extends AppCompatActivity {
         });
     }
 
+
+    public String sendLocation(){
+        return location;
+    }
     public String sendPopData() {
         return populationData;
 

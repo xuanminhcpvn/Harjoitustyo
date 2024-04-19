@@ -40,6 +40,8 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
         String weatherData = tabActivity.sendWeatherData();
         holder.weatherName.setText(populationData);
         holder.weatherMain.setText(weatherData);
+
+
         holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 
