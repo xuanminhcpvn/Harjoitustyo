@@ -74,18 +74,40 @@ public class MainActivity extends AppCompatActivity {
             service.execute(new Runnable() {
                 @Override
                 public void run() {
-                    ArrayList<PopulationData> populationData = pr.getData(context, location);
+                    int IDPop = R.raw.query;
+                    int IDPopChange = R.raw.querychange;
+                    ArrayList<PopulationData> populationData = pr.getData(context, location, IDPop);
+                    ArrayList<PopulationData> populationChangeData = pr.getData(context,location,IDPopChange);
                     WeatherData weatherData = wr.getWeatherData(location);
 
                     if (populationData == null) {
+                        return;
+                    }
+
+                    if (populationChangeData == null) {
                         return;
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             String pop = "";
-                            for(PopulationData data : populationData) {
-                                pop = pop + data.getYear() + ": " + data.getPopulation() + "\n";
+                            String popChange = "";
+
+                            for(PopulationData data1 : populationData) {
+                                if (data1.getYear() == 2022){
+                                    if (data1.getPopulation() < 0){
+                                    popChange = popChange + "-" +data1.getPopulation();
+                                    } else{
+                                        popChange = popChange + "+" +data1.getPopulation();
+                                    }
+                            }
+
+
+
+                            for(PopulationData data2 : populationData) {
+                                if (data2.getYear() == 2022){
+                                    pop = pop + "Population "+ data2.getYear() + ": " + data2.getPopulation() + "("+popChange+")"+"\n";
+                                }
                             }
 
                             Bundle bundle = new Bundle();
@@ -131,14 +153,13 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                    });
+                    };
 
 
                     //Log.d("LUT", "Data haettu");
-                }
+                });
+            };
+
             });
-
-
-        }
-
+    }
 }
