@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentInfo#newInstance} factory method to
@@ -95,7 +97,12 @@ public class FragmentInfo extends Fragment {
         TabActivity activity = (TabActivity) getActivity();
         String populationData = activity.sendPopData();
         String weatherData = activity.sendWeatherData();
+
+
+
         String location = activity.sendLocation();
+        ArrayList<String> dataList = activity.sendDataList();
+
 
 
         txtPopulation = view.findViewById(R.id.txtPopulation);
@@ -109,10 +116,13 @@ public class FragmentInfo extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvInfo);
         // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         // getApplicationContext sijaan getContext ???
-        adapter = new InfoRecyclerViewAdapter(getContext());
+
+
+
+        adapter = new InfoRecyclerViewAdapter(getContext(),dataList);
         // RecyclerView.Adapter adapter = new GroceryListAdapter(getApplicationContext(), groceryStorage.getInstance().getGroceries());
         recyclerView.setAdapter(adapter);
 
