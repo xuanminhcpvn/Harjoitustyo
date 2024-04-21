@@ -97,13 +97,12 @@ public class FragmentInfo extends Fragment {
         TabActivity activity = (TabActivity) getActivity();
         String populationData = activity.sendPopData();
         String weatherData = activity.sendWeatherData();
-
-
-
         String location = activity.sendLocation();
         ArrayList<String> dataList = activity.sendDataList();
 
 
+        txtLocation = view.findViewById(R.id.txtLocation);
+        txtLocation.setText(location);
 
         txtPopulation = view.findViewById(R.id.txtPopulation);
         txtPopulation.setText(populationData);
@@ -111,8 +110,8 @@ public class FragmentInfo extends Fragment {
         txtWeather = view.findViewById(R.id.txtWeather);
         txtWeather.setText(weatherData);
 
-        txtLocation = view.findViewById(R.id.txtLocation);
-        txtLocation.setText(location);
+
+
 
         recyclerView = view.findViewById(R.id.rvInfo);
         // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???

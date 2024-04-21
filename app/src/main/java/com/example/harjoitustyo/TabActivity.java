@@ -20,6 +20,8 @@ public class TabActivity extends AppCompatActivity {
     private String weatherData;
     private String location;
 
+    private String employmentData;
+
     private ArrayList<String> dataList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,9 @@ public class TabActivity extends AppCompatActivity {
         populationData = getIntent().getStringExtra("population");
         weatherData = getIntent().getStringExtra("weatherInfo");
         location = getIntent().getStringExtra("location");
+        employmentData = getIntent().getStringExtra("EmploymentRate");
         dataList = getIntent().getStringArrayListExtra("dataList");
+
 
 
 
@@ -104,9 +108,6 @@ public class TabActivity extends AppCompatActivity {
         return weatherData;
     }
 
-
-
-
-
+    public String sendEmploymentData() { return employmentData;}
 
 }

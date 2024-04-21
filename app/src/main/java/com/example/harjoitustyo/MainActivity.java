@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
             PopulationDataRetriever pr = new PopulationDataRetriever();
             WeatherDataRetriever wr = new WeatherDataRetriever();
-
+            EmploymentDataRetriever er = new EmploymentDataRetriever();
 
             String location = municipality.getText().toString();
 
@@ -74,10 +74,13 @@ public class MainActivity extends AppCompatActivity {
             service.execute(new Runnable() {
                 @Override
                 public void run() {
-                    int IDPop = R.raw.query;
-                    int IDPopChange = R.raw.querychange;
-                    ArrayList<PopulationData> populationData = pr.getData(context, location, IDPop);
-                    ArrayList<PopulationData> populationChangeData = pr.getData(context,location,IDPopChange);
+
+
+
+                    // 0 and 1 define what R.raw resource we take since population ja populationChange are almost identical
+                    ArrayList<PopulationData> populationData = pr.getData(context, location,0);
+                    ArrayList<PopulationData> populationChangeData = pr.getData(context,location,1);
+                    ArrayList<EmploymentData> employmentData = er.getData(context, location);
                     WeatherData weatherData = wr.getWeatherData(location);
 
                     if (populationData == null) {
@@ -87,32 +90,48 @@ public class MainActivity extends AppCompatActivity {
                     if (populationChangeData == null) {
                         return;
                     }
+
+                    if (employmentData == null) {
+                        return;
+                    }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             String pop = "";
                             String popChange = "";
+                            String emp = "";
 
-                            for(PopulationData data1 : populationData) {
-                                if (data1.getYear() == 2022){
-                                    if (data1.getPopulation() < 0){
-                                    popChange = popChange + "-" +data1.getPopulation();
-                                    } else{
-                                        popChange = popChange + "+" +data1.getPopulation();
+                            for(PopulationData data1 : populationChangeData) {
+                                if (data1.getYear() == 2022) {
+                                    if (data1.getPopulation() < 0) {
+                                        popChange = popChange + "-" + data1.getPopulation();
+                                        break;
+                                    } else {
+                                        popChange = popChange + "+" + data1.getPopulation();
+                                        break;
                                     }
+                                }
                             }
+
 
 
 
                             for(PopulationData data2 : populationData) {
                                 if (data2.getYear() == 2022){
                                     pop = pop + "Population "+ data2.getYear() + ": " + data2.getPopulation() + "("+popChange+")"+"\n";
+                                    break;
                                 }
                             }
 
-                            Bundle bundle = new Bundle();
-                            bundle.putString("population",pop);
-                            bundle.putString("location",location);
+                            for(EmploymentData data3 : employmentData) {
+                                if (data3.getYear() == 2022){
+                                    emp = "Employment rate of year " + data3.getYear() + ": " + data3.getPopulation() +"%\n";
+                                    break;
+                                }
+                            }
+
+
+
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
@@ -123,13 +142,18 @@ public class MainActivity extends AppCompatActivity {
                             ;
 
 
-
+                            Bundle bundle = new Bundle();
+                            bundle.putString("population",pop);
+                            bundle.putString("location",location);
                             // We create Bundle here
                             bundle.putString("weatherInfo",weather);
+                            bundle.putString("EmploymentRate",emp);
 
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population",pop);
                             intent.putExtra("weatherInfo",weather);
+                            intent.putExtra("location",location);
+                            intent.putExtra("EmploymentRate",emp);
 
 
                             // This list is for the list in recycler view
@@ -140,9 +164,7 @@ public class MainActivity extends AppCompatActivity {
                             ArrayList<String> dataList = new ArrayList<>();
                             dataList.add(pop);
                             dataList.add(weather);
-
-
-
+                            dataList.add(emp);
                             // intent.putParcelableArrayListExtra("data", (ArrayList <? extends Parcelable>) dataList);
                             // Simply method to send String ArrayList
                             intent.putStringArrayListExtra("dataList", (ArrayList<String>) dataList);
@@ -153,13 +175,12 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                    };
+                    });
 
 
                     //Log.d("LUT", "Data haettu");
-                });
-            };
-
+                };
             });
-    }
+
+        }
 }
