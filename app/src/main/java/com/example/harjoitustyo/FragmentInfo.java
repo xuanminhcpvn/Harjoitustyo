@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentInfo#newInstance} factory method to
@@ -27,8 +29,12 @@ public class FragmentInfo extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView txtPopulation;
+
+
+    private TextView txtLocation;
     private TextView txtWeather;
+
+    private TextView txtPopulation;
 
     private RecyclerView recyclerView;
 
@@ -93,18 +99,30 @@ public class FragmentInfo extends Fragment {
         String weatherData = activity.sendWeatherData();
 
 
+
+        String location = activity.sendLocation();
+        ArrayList<String> dataList = activity.sendDataList();
+
+
+
         txtPopulation = view.findViewById(R.id.txtPopulation);
         txtPopulation.setText(populationData);
 
         txtWeather = view.findViewById(R.id.txtWeather);
         txtWeather.setText(weatherData);
 
+        txtLocation = view.findViewById(R.id.txtLocation);
+        txtLocation.setText(location);
+
         recyclerView = view.findViewById(R.id.rvInfo);
         // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         // getApplicationContext sijaan getContext ???
-        adapter = new InfoRecyclerViewAdapter(getContext());
+
+
+
+        adapter = new InfoRecyclerViewAdapter(getContext(),dataList);
         // RecyclerView.Adapter adapter = new GroceryListAdapter(getApplicationContext(), groceryStorage.getInstance().getGroceries());
         recyclerView.setAdapter(adapter);
 

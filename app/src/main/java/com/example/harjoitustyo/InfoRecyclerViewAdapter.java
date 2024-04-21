@@ -23,10 +23,14 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
     // TODO add it to the builder
     private ArrayList<WeatherData> weathers = new ArrayList<>();
 
+    private ArrayList<String> datas = new ArrayList<>();
 
 
-    public InfoRecyclerViewAdapter(Context context) {
+     // So I learned that you need a data structure in RV, hence the need to create separate ArrayList
+
+    public InfoRecyclerViewAdapter(Context context, ArrayList<String> datas) {
         this.context = context;
+        this.datas = datas;
     }
     @NonNull
     @Override
@@ -36,15 +40,17 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull InfoRecyclerViewHolder holder, int position) {
-        String populationData = tabActivity.sendPopData();
-        String weatherData = tabActivity.sendWeatherData();
+        String populationData = datas.get(position);
+        String weatherData = datas.get(position);
         holder.weatherName.setText(populationData);
         holder.weatherMain.setText(weatherData);
-        holder.weatherDescription.setText(weathers.get(position).getDescription());
+
+
+        // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return datas.size();
     }
 }

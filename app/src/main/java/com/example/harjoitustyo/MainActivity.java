@@ -3,6 +3,7 @@ package com.example.harjoitustyo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -67,27 +68,51 @@ public class MainActivity extends AppCompatActivity {
 
             String location = municipality.getText().toString();
 
+
             ExecutorService service = Executors.newSingleThreadExecutor();
 
             service.execute(new Runnable() {
                 @Override
                 public void run() {
-                    ArrayList<PopulationData> populationData = pr.getData(context, location);
+                    int IDPop = R.raw.query;
+                    int IDPopChange = R.raw.querychange;
+                    ArrayList<PopulationData> populationData = pr.getData(context, location, IDPop);
+                    ArrayList<PopulationData> populationChangeData = pr.getData(context,location,IDPopChange);
                     WeatherData weatherData = wr.getWeatherData(location);
 
                     if (populationData == null) {
+                        return;
+                    }
+
+                    if (populationChangeData == null) {
                         return;
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             String pop = "";
-                            for(PopulationData data : populationData) {
-                                pop = pop + data.getYear() + ": " + data.getPopulation() + "\n";
+                            String popChange = "";
+
+                            for(PopulationData data1 : populationData) {
+                                if (data1.getYear() == 2022){
+                                    if (data1.getPopulation() < 0){
+                                    popChange = popChange + "-" +data1.getPopulation();
+                                    } else{
+                                        popChange = popChange + "+" +data1.getPopulation();
+                                    }
+                            }
+
+
+
+                            for(PopulationData data2 : populationData) {
+                                if (data2.getYear() == 2022){
+                                    pop = pop + "Population "+ data2.getYear() + ": " + data2.getPopulation() + "("+popChange+")"+"\n";
+                                }
                             }
 
                             Bundle bundle = new Bundle();
                             bundle.putString("population",pop);
+                            bundle.putString("location",location);
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
@@ -97,26 +122,44 @@ public class MainActivity extends AppCompatActivity {
                                             "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n"
                             ;
 
+
+
                             // We create Bundle here
                             bundle.putString("weatherInfo",weather);
 
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population",pop);
                             intent.putExtra("weatherInfo",weather);
+
+
+                            // This list is for the list in recycler view
+                            // Since the order whhich data are presented are cruciar
+                            // remember to check which one to go first
+                            // Also out of index error may occur in viewHolder when graphical components > datas in the list
+                            // Usually empty one doens't affect but this does (More about how to fix the problem is in the ViewHolder)
+                            ArrayList<String> dataList = new ArrayList<>();
+                            dataList.add(pop);
+                            dataList.add(weather);
+
+
+
+                            // intent.putParcelableArrayListExtra("data", (ArrayList <? extends Parcelable>) dataList);
+                            // Simply method to send String ArrayList
+                            intent.putStringArrayListExtra("dataList", (ArrayList<String>) dataList);
+
                             startActivity(intent);
 
 
 
                         }
 
-                    });
+                    };
 
 
                     //Log.d("LUT", "Data haettu");
-                }
+                });
+            };
+
             });
-
-
-        }
-
+    }
 }

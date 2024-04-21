@@ -11,11 +11,16 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
 public class TabActivity extends AppCompatActivity {
 
     // Define variables first
     private String populationData;
     private String weatherData;
+    private String location;
+
+    private ArrayList<String> dataList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,10 @@ public class TabActivity extends AppCompatActivity {
          send it with command putExtra() */
         populationData = getIntent().getStringExtra("population");
         weatherData = getIntent().getStringExtra("weatherInfo");
+        location = getIntent().getStringExtra("location");
+        dataList = getIntent().getStringArrayListExtra("dataList");
+
+
 
 
 
@@ -47,6 +56,7 @@ public class TabActivity extends AppCompatActivity {
         // Link https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
         // Method is under tabLayout setup
         // Next go to FragmentInfo
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -74,14 +84,29 @@ public class TabActivity extends AppCompatActivity {
         });
     }
 
+
+
+    public String sendLocation(){
+        return location;
+    }
+
     public String sendPopData() {
         return populationData;
 
     }
 
+    // in order to return dataList we have to define datalist as private variable
+    public ArrayList<String> sendDataList(){
+        return dataList;
+    }
+
     public String sendWeatherData(){
         return weatherData;
     }
+
+
+
+
 
 
 }
