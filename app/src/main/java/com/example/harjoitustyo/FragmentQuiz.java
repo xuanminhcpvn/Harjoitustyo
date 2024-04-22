@@ -33,43 +33,45 @@ public class FragmentQuiz extends Fragment {
 };
     
     private String[] correctAnswers = {
-        //get answers from api...Minh plz help :(
-        "Correct Answer 1",
-        "Correct Answer 2",
-        "Correct Answer 3",
-        "Correct Answer 4",
-        "Correct Answer 5",
-        "Correct Answer 6",
-        "Correct Answer 7",
-        "Correct Answer 8",
-        "Correct Answer 9", 
-        "Correct Answer 10"
-    };
+    //get answers from api...Minh plz help :(
+    "Correct Answer 1",
+    "Correct Answer 2",
+    "Correct Answer 3",
+    "Correct Answer 4",
+    "Correct Answer 5",
+    "Correct Answer 6",
+    "Correct Answer 7",
+    "Correct Answer 8",
+    "Correct Answer 9",
+    "Correct Answer 10"
+};
 
     private String[][] incorrectAnswers = {
-    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
-    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
-    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
-    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())}
-};
+        { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
+        { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
+        { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) }
+    };
 
     private Random random = new Random();
 
-    private  int getRandomInt() {
+    private int getRandomInt() {
         return random.nextInt(200001);
     }
-    private  double getRandomPercentage() {
+
+    private double getRandomPercentage() {
         return Math.round(random.nextDouble() * 1000) / 10.0;
     }
 
     private int currentQuestionIndex = 0;
     private int score = 0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
