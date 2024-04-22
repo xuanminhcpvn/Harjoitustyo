@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentQuiz">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/questionTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:text="Question" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/option1Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Option 1"
+        android:padding="12dp"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/option2Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Option 2"
+        android:padding="12dp"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/option3Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Option 3"
+        android:padding="12dp"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/option4Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Option 4"
+        android:padding="12dp"
+        android:layout_margin="8dp" />
+
+</LinearLayout>
