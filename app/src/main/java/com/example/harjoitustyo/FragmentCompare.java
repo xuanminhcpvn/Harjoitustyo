@@ -89,8 +89,12 @@ public class FragmentCompare extends Fragment {
         Log.d("LUT", txtWeather2.getText().toString());
 
 
+        // Tää vastaa kolmatta sarakkeeetta
+        // Ongelmana Lista ei ole voitu luoda ennen kun käydään tätä koodillohkoa läpi ?
 
+        /*
         if (service.isShutdown()) {
+
             // Update the UI with comparison results on the main thread
             getActivity().runOnUiThread(() -> {
                 // dataCompare 0 = weather 1 = pop 2= popChange
@@ -111,7 +115,13 @@ public class FragmentCompare extends Fragment {
             });
 
         }
+
+        */
+
+
     }
+
+
 
 
 
