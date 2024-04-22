@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,14 +15,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchRecyclerViewAdapter.OnItemClickListener, Activity {
 
     private EditText municipality;
+
+    private View view;
+    private String location;
+    private String searchTerm;
+
+    private RecyclerView.Adapter adapter;
+
+    private RecyclerView rvSearches;
+    private SearchList searchesStorage;
 
 
 
@@ -45,18 +57,23 @@ public class MainActivity extends AppCompatActivity {
         // TODO Also a recyclerview in oncreate
 
         Button searchButton = findViewById(R.id.searchButton);
+        municipality = findViewById(R.id.editMunicipality);
+        rvSearches = findViewById(R.id.rvSearch);
+        updateSearches();
 
 
        // searchButton.setOnClickListener(listener);
     }
 
-        public void searchMunicipality(View view) {
-            municipality = findViewById(R.id.editMunicipality);
+
+
+
+    public void searchMunicipality(View v) {
+
             // String municipalityString  = .getText().toString().
 
             // switch to tabActivity
             Intent intent = new Intent(this, TabActivity.class);
-
 
 
             Log.d("LUT", "Nappula toimii");
@@ -66,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             WeatherDataRetriever wr = new WeatherDataRetriever();
             EmploymentDataRetriever er = new EmploymentDataRetriever();
 
-            String location = municipality.getText().toString();
+            location = municipality.getText().toString();
 
 
             ExecutorService service = Executors.newSingleThreadExecutor();
@@ -76,10 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
 
 
-
                     // 0 and 1 define what R.raw resource we take since population ja populationChange are almost identical
-                    ArrayList<PopulationData> populationData = pr.getData(context, location,0);
-                    ArrayList<PopulationData> populationChangeData = pr.getData(context,location,1);
+                    ArrayList<PopulationData> populationData = pr.getData(context, location, 0);
+                    ArrayList<PopulationData> populationChangeData = pr.getData(context, location, 1);
                     ArrayList<EmploymentData> employmentData = er.getData(context, location);
                     WeatherData weatherData = wr.getWeatherData(location);
 
@@ -101,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             String popChange = "";
                             String emp = "";
 
-                            for(PopulationData data1 : populationChangeData) {
+                            for (PopulationData data1 : populationChangeData) {
                                 if (data1.getYear() == 2022) {
                                     if (data1.getPopulation() < 0) {
                                         popChange = popChange + "-" + data1.getPopulation();
@@ -114,46 +130,35 @@ public class MainActivity extends AppCompatActivity {
                             }
 
 
-
-
-                            for(PopulationData data2 : populationData) {
-                                if (data2.getYear() == 2022){
-                                    pop = pop + "Population "+ data2.getYear() + ": " + data2.getPopulation() + "("+popChange+")"+"\n";
+                            for (PopulationData data2 : populationData) {
+                                if (data2.getYear() == 2022) {
+                                    pop = pop + "Population " + data2.getYear() + ": " + data2.getPopulation() + "(" + popChange + ")" + "\n";
                                     break;
                                 }
                             }
 
-                            for(EmploymentData data3 : employmentData) {
-                                if (data3.getYear() == 2022){
-                                    emp = "Employment rate of year " + data3.getYear() + ": " + data3.getPopulation() +"%\n";
+                            for (EmploymentData data3 : employmentData) {
+                                if (data3.getYear() == 2022) {
+                                    emp = "Employment rate of year " + data3.getYear() + ": " + data3.getPopulation() + "%\n";
                                     break;
                                 }
                             }
-
-
 
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
-                                String weather = weatherData.getName() + "\n" +
-                                            "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() +")\n" +
-                                            "Lämpötila: " + weatherData.getTemperature() + " K\n" +
-                                            "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n"
-                            ;
+                            String weather = weatherData.getName() + "\n" +
+                                    "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n" +
+                                    "Lämpötila: " + weatherData.getTemperature() + " K\n" +
+                                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n";
 
 
                             Bundle bundle = new Bundle();
-                            bundle.putString("population",pop);
-                            bundle.putString("location",location);
-                            // We create Bundle here
-                            bundle.putString("weatherInfo",weather);
-                            bundle.putString("EmploymentRate",emp);
-
                             // TODO jotta tieto välittyy toiselle activiteetille
-                            intent.putExtra("population",pop);
-                            intent.putExtra("weatherInfo",weather);
-                            intent.putExtra("location",location);
-                            intent.putExtra("EmploymentRate",emp);
+                            intent.putExtra("population", pop);
+                            intent.putExtra("weatherInfo", weather);
+                            intent.putExtra("location", location);
+                            intent.putExtra("EmploymentRate", emp);
 
 
                             // This list is for the list in recycler view
@@ -170,17 +175,66 @@ public class MainActivity extends AppCompatActivity {
                             intent.putStringArrayListExtra("dataList", (ArrayList<String>) dataList);
 
                             startActivity(intent);
-
-
-
                         }
 
                     });
 
 
                     //Log.d("LUT", "Data haettu");
-                };
+                }
+
+                ;
             });
 
+            searchTerm = municipality.getText().toString();
+            if (!searchTerm.isEmpty()) {
+                ArrayList<Search> searches = SearchList.getInstance().getSearches();
+                for (Search s: searches) {
+                    if (searches.size() > 5) {
+                        searches.remove(-1);
+                    }
+                    if (s.getCityName().equals(searchTerm) ){
+                        break;
+                    } else {
+                        Search search = new Search(location);
+                        SearchList.getInstance().addSearch(search);
+                        }
+                }
+
+
+                // Search search = new Search(location);
+                // SearchList.getInstance().addSearch(search);
+                updateSearches();
+
+            } else {
+                municipality.setError("Please enter a search term");
+            }
         }
+
+
+    private void updateSearches() {
+        if (rvSearches != null ) {
+            searchesStorage = SearchList.getInstance();
+            rvSearches.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new SearchRecyclerViewAdapter(this, searchesStorage.getSearches(), this);
+            rvSearches.setAdapter(adapter);
+
+        }
+    }
+    @Override
+    public void onItemClick(String cityName) {
+        location = cityName;
+        searchTerm = cityName;
+
+        searchMunicipality(view);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
+
+
 }
