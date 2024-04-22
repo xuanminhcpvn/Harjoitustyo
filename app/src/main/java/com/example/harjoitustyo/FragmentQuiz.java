@@ -17,11 +17,45 @@ public class FragmentQuiz extends Fragment {
     private Button option3Button;
     private Button option4Button;
 
-    private String[] questions = {"Question 1", "Question 2", "Question 3"};
-    private String[] correctAnswers = {"Correct Answer 1", "Correct Answer 2", "Correct Answer 3"};
-    private String[][] incorrectAnswers = {{"Incorrect Answer 1", "Incorrect Answer 2", "Incorrect Answer 3"},
-            {"Incorrect Answer 1", "Incorrect Answer 2", "Incorrect Answer 3"},
-            {"Incorrect Answer 1", "Incorrect Answer 2", "Incorrect Answer 3"}};
+   private String[] questions = {
+    "Kuinka monta asukasta kunnassa on?",
+    "Kuinka monta työpaikkaa kunnassa on?",
+    "Kuinka monta perhettä kunnassa on?",
+    "Kuinka monta prosenttia asukkaista on eläkeläisiä?",
+    "Kuinka monta prosenttia asukkaista on ruotsinkielisiä?",
+    "Mikä on työttömien osuus työvoimasta %?",
+    "Mikä on kunnan taajama-aste %?",
+    "Kuinka suuri osuus työpaikoista kuuluu alkutuotantoon kunnassa?",
+    "Kuinka suuri osuus työpaikoista kuuluu jalostukseen kunnassa?",
+    "Kuinka suuri osuus työpaikoista kuuluu palveluihin kunnassa?",
+};
+    
+    private String[] correctAnswers = {
+        //get answers from api...Minh plz help :(
+        "Correct Answer 1",
+        "Correct Answer 2",
+        "Correct Answer 3",
+        "Correct Answer 4",
+        "Correct Answer 5",
+        "Correct Answer 6",
+        "Correct Answer 7",
+        "Correct Answer 8",
+        "Correct Answer 9",
+        "Correct Answer 10"
+    };
+    
+    private String[][] incorrectAnswers = {
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
+    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()}
+};
 
     private int currentQuestionIndex = 0;
     private int score = 0;
