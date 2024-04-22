@@ -59,16 +59,21 @@ public class FragmentQuiz extends Fragment {
         { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) }
     };
 
-    private Random random = new Random();
+    private Random random;
 
     private int getRandomInt() {
+        if (random == null) {
+            random = new Random();
+        }
         return random.nextInt(200001);
     }
 
     private double getRandomPercentage() {
+        if (random == null) {
+            random = new Random();
+        }
         return Math.round(random.nextDouble() * 1000) / 10.0;
     }
-
     private int currentQuestionIndex = 0;
     private int score = 0;
 
