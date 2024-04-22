@@ -23,7 +23,8 @@
         android:text="Kyllä"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:onClick="showCongratulationsMessage" />
 
     <Button
         android:id="@+id/button2"
@@ -34,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:onClick="showWrongAnswerMessage" />
 
     <TextView
         android:id="@+id/textView3"
@@ -43,4 +45,5 @@
         android:text="TextView"
         tools:layout_editor_absoluteX="179dp"
         tools:layout_editor_absoluteY="460dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
