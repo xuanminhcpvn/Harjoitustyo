@@ -17,7 +17,7 @@ public class KouvolaGame extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+        View view = inflater.inflate(R.layout.kouvola_game, container, false);
 
         questionTextView = view.findViewById(R.id.textView2);
         yesButton = view.findViewById(R.id.button);
