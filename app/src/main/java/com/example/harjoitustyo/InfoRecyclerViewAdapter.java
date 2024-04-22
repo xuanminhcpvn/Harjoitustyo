@@ -21,7 +21,6 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
 
     // TODO if you want to implement other data node, must create ArrayList for them ? and then
     // TODO add it to the builder
-    private ArrayList<WeatherData> weathers = new ArrayList<>();
 
     private ArrayList<String> datas = new ArrayList<>();
 
@@ -42,8 +41,10 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
     public void onBindViewHolder(@NonNull InfoRecyclerViewHolder holder, int position) {
         String populationData = datas.get(position);
         String weatherData = datas.get(position);
-        holder.weatherName.setText(populationData);
-        holder.weatherMain.setText(weatherData);
+        String employmentData = datas.get(position);
+        holder.textEmploy.setText(employmentData);
+        holder.textPop.setText(populationData);
+        holder.weatherDescription.setText(weatherData);
 
 
         // holder.weatherDescription.setText(weathers.get(position).getDescription());

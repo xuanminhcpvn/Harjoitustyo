@@ -3,6 +3,7 @@ package com.example.harjoitustyo;
 import android.content.Context;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -78,16 +79,31 @@ public class PopulationDataRetriever {
             con.setDoOutput(true);
 
 
+            int RawID = 0;
+            if (resourceID == 0) {
+                InputStream ins = context.getResources().openRawResource(R.raw.query);
+                JsonNode jsonInputString = objectMapper.readTree(ins);
+                ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
+                byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
+                OutputStream os = con.getOutputStream();
+                os.write(input, 0, input.length);
+            }
+            else if (resourceID == 1){
+                InputStream ins = context.getResources().openRawResource(R.raw.querychange);
+                JsonNode jsonInputString = objectMapper.readTree(ins);
+                ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
+                byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
+                OutputStream os = con.getOutputStream();
+                os.write(input, 0, input.length);
+            }
 
-
-            JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(resourceID));
-
+            /*
+            InputStream ins = context.getResources().openRawResource(R.raw.query);
+            JsonNode jsonInputString = objectMapper.readTree(ins);
             ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
-
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
-            os.write(input, 0, input.length);
-
+            os.write(input, 0, input.length); */
 
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
             StringBuilder response = new StringBuilder();
