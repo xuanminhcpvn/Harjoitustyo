@@ -57,6 +57,17 @@ public class FragmentQuiz extends Fragment {
     {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()}
 };
 
+public class RandomizerModule {
+    private static Random random = new Random();
+
+   private static int getRandomInt() {
+    return random.nextInt(200001);
+}
+    private static double getRandomPercentage() {
+    return Math.round(random.nextDouble() * 1000) / 10.0;
+}
+    }
+
     private int currentQuestionIndex = 0;
     private int score = 0;
 
