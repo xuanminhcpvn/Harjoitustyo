@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
             PopulationDataRetriever pr = new PopulationDataRetriever();
             WeatherDataRetriever wr = new WeatherDataRetriever();
             EmploymentDataRetriever er = new EmploymentDataRetriever();
-
+            JobSelfSuffienciencyRetriever jr = new JobSelfSuffienciencyRetriever();
 
             ExecutorService service = Executors.newSingleThreadExecutor();
 
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                     ArrayList<PopulationData> populationData = pr.getData(context, location, 0);
                     ArrayList<PopulationData> populationChangeData = pr.getData(context, location, 1);
                     ArrayList<EmploymentData> employmentData = er.getData(context, location);
+                    ArrayList<JobSelfSufficiency> jobData = jr.getData(context,location);
                     WeatherData weatherData = wr.getWeatherData(location);
 
                     if (populationData == null) {
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                             String pop = "";
                             String popChange = "";
                             String emp = "";
+                            String jobS = "";
 
                             for (PopulationData data1 : populationChangeData) {
                                 if (data1.getYear() == 2022) {
@@ -171,6 +173,12 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                                 }
                             }
 
+                            for ( JobSelfSufficiency data4 : jobData) {
+                                if (data4.getYear() == 2022) {
+                                    jobS = "Job self-suffieciency rate of year" + data4.getYear() +": "+data4.getPopulation() + "%\n";
+                                }
+                            }
+
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
@@ -181,10 +189,11 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
                             String icon  = weatherData.getIcon();
 
-                            DataObject data = new DataObject(pop,weather,emp);
+                            DataObject data = new DataObject(pop,weather,emp,jobS);
                             dataList.getInstance().addDataObject(data);
 
                             Bundle bundle = new Bundle();
+                            intent.putExtra("jobS",jobS);
                             intent.putExtra("popChange Number", pop);
                             intent.putExtra("iconNumber", icon);
                             // TODO jotta tieto välittyy toiselle activiteetille
@@ -193,22 +202,6 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                             intent.putExtra("location", location);
                             intent.putExtra("EmploymentRate", emp);
 
-
-                            // This list is for the list in recycler view
-                            // Since the order whhich data are presented are cruciar
-                            // remember to check which one to go first
-                            // Also out of index error may occur in viewHolder when graphical components > datas in the list
-                            // Usually empty one doens't affect but this does (More about how to fix the problem is in the ViewHolder)
-
-
-                            /* ArrayList<String> dataList = new ArrayList<>();
-                            dataList.add(pop);
-                            dataList.add(weather);
-                            dataList.add(emp);
-                            // intent.putParcelableArrayListExtra("data", (ArrayList <? extends Parcelable>) dataList);
-                            // Simply method to send String ArrayList
-                            intent.putStringArrayListExtra("dataList", (ArrayList<String>) dataList);
-                            */
                             startActivity(intent);
 
                         }

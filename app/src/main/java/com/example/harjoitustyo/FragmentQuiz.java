@@ -14,7 +14,7 @@ import java.util.Random;
 public class FragmentQuiz extends Fragment {
 
     private TextView questionTextView;
-    private TabActivity activity;
+
     private Button option1Button;
     private Button option2Button;
     private Button option3Button;
@@ -34,12 +34,12 @@ public class FragmentQuiz extends Fragment {
     "Kuinka suuri osuus työpaikoista kuuluu jalostukseen kunnassa?",
     "Kuinka suuri osuus työpaikoista kuuluu palveluihin kunnassa?",
 };
-    // TabActivity activity = (TabActivity) getActivity();
-    private String[] correctAnswers = {
-    //get answers from api...Minh plz help :(
 
-    answer1 = activity.sendPopData(),
-    answer2 = activity.sendEmploymentData(),
+    private String[] correctAnswers = {
+            answer1,
+            answer2,
+
+
     "Correct Answer 3",
     "Correct Answer 4",
     "Correct Answer 5",
@@ -85,6 +85,10 @@ public class FragmentQuiz extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        TabActivity activity = (TabActivity) getActivity();
+        answer1 = activity.sendPopData();
+        answer2 = activity.sendEmploymentData();
 
         questionTextView = view.findViewById(R.id.questionTextView);
         option1Button = view.findViewById(R.id.option1Button);

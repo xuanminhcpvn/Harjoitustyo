@@ -4,16 +4,19 @@ public class DataObject {
 
     private String popData;
     private String weatherData;
-    private String EmploymentData;
-    private String PoliticalData;
+    private String employmentData;
+    private String politicalData;
 
-    public DataObject(String popData, String weatherData, String EmploymentData) {
+    private String jobS;
+    public DataObject(String popData, String weatherData, String employmentData, String jobS) {
         this.popData = popData;
         this.weatherData = weatherData;
-        this.EmploymentData = EmploymentData;
+        this.employmentData = employmentData;
+        this.jobS = jobS;
     }
 
 
+    public String getJobS() {return jobS;}
 
     public String getPopData() {
         return popData;
@@ -32,18 +35,18 @@ public class DataObject {
     }
 
     public String getEmploymentData() {
-        return EmploymentData;
+        return employmentData;
     }
 
     public void setEmploymentData(String employmentData) {
-        EmploymentData = employmentData;
+        employmentData = employmentData;
     }
 
     public String getPoliticalData() {
-        return PoliticalData;
+        return politicalData;
     }
 
     public void setPoliticalData(String politicalData) {
-        PoliticalData = politicalData;
+        politicalData = politicalData;
     }
 }

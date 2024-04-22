@@ -23,7 +23,7 @@ public class TabActivity extends AppCompatActivity {
     // Define variables first
     private String populationData;
 
-    private String emp, weather, pop, popChange;
+    private String emp, weather, pop, popChange, jobS;
     private String weatherData;
     private String location;
 
@@ -58,6 +58,8 @@ public class TabActivity extends AppCompatActivity {
         location = getIntent().getStringExtra("location");
         emp = getIntent().getStringExtra("EmploymentRate");
         icon = getIntent().getStringExtra("iconNumber");
+        jobS = getIntent().getStringExtra("jobS");
+
 
 
         // One user suggest to create yourself sendData() method in activity to fragment
@@ -109,6 +111,7 @@ public class TabActivity extends AppCompatActivity {
 
     // in order to return dataList we have to define datalist as private variable
 
+    public String sendJobSData() {return jobS;}
 
     public String sendWeatherData(){
         return weather;

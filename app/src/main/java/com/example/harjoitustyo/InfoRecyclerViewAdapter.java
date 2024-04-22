@@ -42,6 +42,7 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
         holder.textPop.setText(datas.get(position).getPopData());
         holder.textEmploy.setText(datas.get(position).getEmploymentData());
         holder.weatherDescription.setText(datas.get(position).getWeatherData());
+        holder.textJobS.setText(datas.get(position).getJobS());
         // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 
