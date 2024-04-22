@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.Random;
+
 public class FragmentQuiz extends Fragment {
 
     private TextView questionTextView;
@@ -43,29 +45,27 @@ public class FragmentQuiz extends Fragment {
         "Correct Answer 9", 
         "Correct Answer 10"
     };
-    
+
     private String[][] incorrectAnswers = {
     {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
     {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
     {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()},
-    {getRandomPercentage(), getRandomPercentage(), getRandomPercentage()}
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())}
 };
 
-public class RandomizerModule {
-    private static Random random = new Random();
+    private Random random = new Random();
 
-   private static int getRandomInt() {
-    return random.nextInt(200001);
-}
-    private static double getRandomPercentage() {
-    return Math.round(random.nextDouble() * 1000) / 10.0;
-}
+    private  int getRandomInt() {
+        return random.nextInt(200001);
+    }
+    private  double getRandomPercentage() {
+        return Math.round(random.nextDouble() * 1000) / 10.0;
     }
 
     private int currentQuestionIndex = 0;
