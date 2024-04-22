@@ -1,64 +1,125 @@
 package com.example.harjoitustyo;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentQuiz#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+
+import java.util.Random;
+
 public class FragmentQuiz extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private TextView questionTextView;
+    private Button option1Button;
+    private Button option2Button;
+    private Button option3Button;
+    private Button option4Button;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+   private String[] questions = {
+    "Kuinka monta asukasta kunnassa on?",
+    "Kuinka monta työpaikkaa kunnassa on?",
+    "Kuinka monta perhettä kunnassa on?",
+    "Kuinka monta prosenttia asukkaista on eläkeläisiä?",
+    "Kuinka monta prosenttia asukkaista on ruotsinkielisiä?",
+    "Mikä on työttömien osuus työvoimasta %?",
+    "Mikä on kunnan taajama-aste %?",
+    "Kuinka suuri osuus työpaikoista kuuluu alkutuotantoon kunnassa?",
+    "Kuinka suuri osuus työpaikoista kuuluu jalostukseen kunnassa?",
+    "Kuinka suuri osuus työpaikoista kuuluu palveluihin kunnassa?",
+};
+    
+    private String[] correctAnswers = {
+        //get answers from api...Minh plz help :(
+        "Correct Answer 1",
+        "Correct Answer 2",
+        "Correct Answer 3",
+        "Correct Answer 4",
+        "Correct Answer 5",
+        "Correct Answer 6",
+        "Correct Answer 7",
+        "Correct Answer 8",
+        "Correct Answer 9", 
+        "Correct Answer 10"
+    };
 
-    public FragmentQuiz() {
-        // Required empty public constructor
+    private String[][] incorrectAnswers = {
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())},
+    {String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage())}
+};
+
+    private Random random = new Random();
+
+    private  int getRandomInt() {
+        return random.nextInt(200001);
+    }
+    private  double getRandomPercentage() {
+        return Math.round(random.nextDouble() * 1000) / 10.0;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentQuiz.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentQuiz newInstance(String param1, String param2) {
-        FragmentQuiz fragment = new FragmentQuiz();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private int currentQuestionIndex = 0;
+    private int score = 0;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        questionTextView = view.findViewById(R.id.questionTextView);
+        option1Button = view.findViewById(R.id.option1Button);
+        option2Button = view.findViewById(R.id.option2Button);
+        option3Button = view.findViewById(R.id.option3Button);
+        option4Button = view.findViewById(R.id.option4Button);
+
+        displayQuestion();
+
+        option1Button.setOnClickListener(v -> checkAnswer(option1Button.getText().toString()));
+        option2Button.setOnClickListener(v -> checkAnswer(option2Button.getText().toString()));
+        option3Button.setOnClickListener(v -> checkAnswer(option3Button.getText().toString()));
+        option4Button.setOnClickListener(v -> checkAnswer(option4Button.getText().toString()));
+
+        return view;
+    }
+
+    private void displayQuestion() {
+        questionTextView.setText(questions[currentQuestionIndex]);
+        option1Button.setText(correctAnswers[currentQuestionIndex]);
+        option2Button.setText(incorrectAnswers[currentQuestionIndex][0]);
+        option3Button.setText(incorrectAnswers[currentQuestionIndex][1]);
+        option4Button.setText(incorrectAnswers[currentQuestionIndex][2]);
+    }
+
+    private void checkAnswer(String selectedAnswer) {
+        if (selectedAnswer.equals(correctAnswers[currentQuestionIndex])) {
+            score++;
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            showFinalScore();
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+    private void showFinalScore() {
+        // Display the final score to the user
+        String finalScoreMessage = "Quiz completed!\nYour score: " + score + " out of " + questions.length;
+        questionTextView.setText(finalScoreMessage);
+        option1Button.setVisibility(View.GONE);
+        option2Button.setVisibility(View.GONE);
+        option3Button.setVisibility(View.GONE);
+        option4Button.setVisibility(View.GONE);
     }
 }

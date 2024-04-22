@@ -15,7 +15,7 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     // ImageView imageWeather;
 
-    TextView weatherName, weatherMain;
+    TextView textPop, weatherDescription, textEmploy;
 
 
     // TODO this is important in order to not get outofindex error only add graphical components
@@ -24,8 +24,9 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
     public InfoRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
         // textPop = itemView.findViewById(R.id.textPop);
-        weatherName = itemView.findViewById(R.id.weatherName);
-        weatherMain = itemView.findViewById(R.id.weatherMain);
+        textPop = itemView.findViewById(R.id.textPop);
+        weatherDescription = itemView.findViewById(R.id.weatherDescription);
+        textEmploy = itemView.findViewById(R.id.textEmploy);
         // weatherDescription = itemView.findViewById(R.id.weatherDescription);
         // weatherWind = itemView.findViewById(R.id.weatherWind);
         // weatherTemp = itemView.findViewById(R.id.weatherTemp);
