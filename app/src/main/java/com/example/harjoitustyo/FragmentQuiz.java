@@ -40,7 +40,7 @@ public class FragmentQuiz extends Fragment {
         "Correct Answer 6",
         "Correct Answer 7",
         "Correct Answer 8",
-        "Correct Answer 9",
+        "Correct Answer 9", 
         "Correct Answer 10"
     };
     
