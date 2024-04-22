@@ -18,7 +18,7 @@ public class DataList {
         datas.add(data);
     }
 
-    public ArrayList<DataObject> getGroceries() {
+    public ArrayList<DataObject> getDatas() {
         return datas;
     }
 }

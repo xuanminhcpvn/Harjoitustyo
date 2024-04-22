@@ -7,9 +7,10 @@ public class DataObject {
     private String EmploymentData;
     private String PoliticalData;
 
-    public DataObject(String popData, String weatherData) {
+    public DataObject(String popData, String weatherData, String EmploymentData) {
         this.popData = popData;
         this.weatherData = weatherData;
+        this.EmploymentData = EmploymentData;
     }
 
 

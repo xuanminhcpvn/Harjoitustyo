@@ -37,6 +37,8 @@ public class FragmentInfo extends Fragment {
 
     private RecyclerView recyclerView;
     private TabActivity activity;
+
+    private DataList dataList;
     private RecyclerView.Adapter adapter;
 
 
@@ -96,7 +98,7 @@ public class FragmentInfo extends Fragment {
         String populationData = activity.sendPopData();
         String weatherData = activity.sendWeatherData();
         String location = activity.sendLocation();
-        ArrayList<String> dataList = activity.sendDataList();
+
         String icon = activity.sendIconData();
 
 
@@ -125,13 +127,19 @@ public class FragmentInfo extends Fragment {
 
 
 
-        adapter = new InfoRecyclerViewAdapter(getContext(),dataList);
+        adapter = new InfoRecyclerViewAdapter(getContext(),dataList.getInstance().getDatas());
         // RecyclerView.Adapter adapter = new GroceryListAdapter(getApplicationContext(), groceryStorage.getInstance().getGroceries());
         recyclerView.setAdapter(adapter);
 
 
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
 }

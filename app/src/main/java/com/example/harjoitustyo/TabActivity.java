@@ -1,6 +1,9 @@
 package com.example.harjoitustyo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +15,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class TabActivity extends AppCompatActivity {
 
     // Define variables first
     private String populationData;
+
+    private String emp, weather, pop, popChange;
     private String weatherData;
     private String location;
 
@@ -24,7 +31,7 @@ public class TabActivity extends AppCompatActivity {
 
     private String employmentData;
 
-    private ArrayList<String> dataList;
+    private DataList dataList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +53,15 @@ public class TabActivity extends AppCompatActivity {
         /* TODO With getIntent().getStringExtra(Bundle Key)--> get information from other Activity
         First have to put data in the original activity(Here it is main) to a Bundle package and
          send it with command putExtra() */
-        populationData = getIntent().getStringExtra("population");
-        weatherData = getIntent().getStringExtra("weatherInfo");
+        pop = getIntent().getStringExtra("population");
+        weather = getIntent().getStringExtra("weatherInfo");
         location = getIntent().getStringExtra("location");
-        employmentData = getIntent().getStringExtra("EmploymentRate");
+        emp = getIntent().getStringExtra("EmploymentRate");
         icon = getIntent().getStringExtra("iconNumber");
-        dataList = getIntent().getStringArrayListExtra("dataList");
-
-
-
-
-
 
 
         // One user suggest to create yourself sendData() method in activity to fragment
-        // Link https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
+            // Link https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
         // Method is under tabLayout setup
         // Next go to FragmentInfo
 
@@ -98,21 +99,21 @@ public class TabActivity extends AppCompatActivity {
     }
 
     public String sendPopData() {
-        return populationData;
+        return pop;
 
     }
+
+    public String sendPopChangeData() {return popChange; }
 
     public String sendIconData() {return icon;}
 
     // in order to return dataList we have to define datalist as private variable
-    public ArrayList<String> sendDataList(){
-        return dataList;
-    }
+
 
     public String sendWeatherData(){
-        return weatherData;
+        return weather;
     }
 
-    public String sendEmploymentData() { return employmentData;}
+    public String sendEmploymentData() { return emp;}
 
 }

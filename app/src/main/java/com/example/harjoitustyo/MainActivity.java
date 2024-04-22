@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
     private RecyclerView.Adapter adapter;
 
+    private DataList dataList;
+
     private RecyclerView rvSearches;
     private SearchList searchesStorage;
 
@@ -73,17 +75,42 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
             // String municipalityString  = .getText().toString().
 
             // switch to tabActivity
+
+            location = municipality.getText().toString();
             Intent intent = new Intent(this, TabActivity.class);
 
 
             Log.d("LUT", "Nappula toimii");
-            Context context = this;
 
+            searchTerm = municipality.getText().toString();
+            if (!searchTerm.isEmpty()) {
+            ArrayList<Search> searches = SearchList.getInstance().getSearches();
+            for (Search s: searches) {
+                if (searches.size() > 5) {
+                    searches.remove(-1);
+                }
+                if (!s.getCityName().equals(location)){
+                    Log.d("Added into the List","Added into the list");
+                    Search search = new Search(location);
+                    SearchList.getInstance().addSearch(search);
+                }
+            }
+                Search search = new Search(location);
+                SearchList.getInstance().addSearch(search);
+
+
+            // Search search = new Search(location);
+            // SearchList.getInstance().addSearch(search);
+
+            updateSearches();
+            } else {
+                municipality.setError("Please enter a search term");
+            }
+
+            Context context = this;
             PopulationDataRetriever pr = new PopulationDataRetriever();
             WeatherDataRetriever wr = new WeatherDataRetriever();
             EmploymentDataRetriever er = new EmploymentDataRetriever();
-
-            location = municipality.getText().toString();
 
 
             ExecutorService service = Executors.newSingleThreadExecutor();
@@ -154,8 +181,11 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
                             String icon  = weatherData.getIcon();
 
+                            DataObject data = new DataObject(pop,weather,emp);
+                            dataList.getInstance().addDataObject(data);
 
                             Bundle bundle = new Bundle();
+                            intent.putExtra("popChange Number", pop);
                             intent.putExtra("iconNumber", icon);
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population", pop);
@@ -169,50 +199,32 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                             // remember to check which one to go first
                             // Also out of index error may occur in viewHolder when graphical components > datas in the list
                             // Usually empty one doens't affect but this does (More about how to fix the problem is in the ViewHolder)
-                            ArrayList<String> dataList = new ArrayList<>();
+
+
+                            /* ArrayList<String> dataList = new ArrayList<>();
                             dataList.add(pop);
                             dataList.add(weather);
                             dataList.add(emp);
                             // intent.putParcelableArrayListExtra("data", (ArrayList <? extends Parcelable>) dataList);
                             // Simply method to send String ArrayList
                             intent.putStringArrayListExtra("dataList", (ArrayList<String>) dataList);
-
+                            */
                             startActivity(intent);
+
                         }
 
                     });
 
 
-                    //Log.d("LUT", "Data haettu");
+                    Log.d("LUT", "Data haettu");
                 }
+
 
                 ;
             });
-
-            searchTerm = municipality.getText().toString();
-            if (!searchTerm.isEmpty()) {
-                ArrayList<Search> searches = SearchList.getInstance().getSearches();
-                for (Search s: searches) {
-                    if (searches.size() > 5) {
-                        searches.remove(-1);
-                    }
-                    if (s.getCityName().equals(searchTerm) ){
-                        break;
-                    } else {
-                        Search search = new Search(location);
-                        SearchList.getInstance().addSearch(search);
-                        }
-                }
-
-
-                // Search search = new Search(location);
-                // SearchList.getInstance().addSearch(search);
-                updateSearches();
-
-            } else {
-                municipality.setError("Please enter a search term");
-            }
         }
+
+
 
 
     private void updateSearches() {

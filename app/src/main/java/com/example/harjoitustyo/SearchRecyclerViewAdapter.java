@@ -37,7 +37,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
 
     }
 
-    // Credit to Samym Mohibby on how to make ArrayList item connects with the Fragment
+    // Credit to Sammy Mohibby on how to make ArrayList item connects with the Fragment
     public interface OnItemClickListener {
 
         void onItemClick(String cityName);

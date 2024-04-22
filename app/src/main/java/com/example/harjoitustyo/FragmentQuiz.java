@@ -14,10 +14,13 @@ import java.util.Random;
 public class FragmentQuiz extends Fragment {
 
     private TextView questionTextView;
+    private TabActivity activity;
     private Button option1Button;
     private Button option2Button;
     private Button option3Button;
     private Button option4Button;
+
+    private String answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10;
 
    private String[] questions = {
     "Kuinka monta asukasta kunnassa on?",
@@ -31,11 +34,12 @@ public class FragmentQuiz extends Fragment {
     "Kuinka suuri osuus työpaikoista kuuluu jalostukseen kunnassa?",
     "Kuinka suuri osuus työpaikoista kuuluu palveluihin kunnassa?",
 };
-    
+    // TabActivity activity = (TabActivity) getActivity();
     private String[] correctAnswers = {
     //get answers from api...Minh plz help :(
-    "Correct Answer 1",
-    "Correct Answer 2",
+
+    answer1 = activity.sendPopData(),
+    answer2 = activity.sendEmploymentData(),
     "Correct Answer 3",
     "Correct Answer 4",
     "Correct Answer 5",
