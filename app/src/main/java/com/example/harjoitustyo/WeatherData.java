@@ -7,12 +7,18 @@ public class WeatherData {
     private String temperature;
     private String windSpeed;
 
-    public WeatherData(String n, String m, String d, String t, String w) {
+    private String icon;
+
+    private String humidity;
+
+    public WeatherData(String n, String m, String d, String t, String w, String c, String h) {
         name = n;
         main = m;
         description = d;
         temperature = t;
         windSpeed = w;
+        icon = c;
+        humidity = h;
 
     }
 
@@ -41,7 +47,28 @@ public class WeatherData {
     }
 
     public String getTemperature() {
+        double kelvin = Double.parseDouble(temperature);
+        // + 1 is for the round-up.
+        Double celsius = new Double(kelvin - 273.15 + 1);
+        int intValue = celsius.intValue();
+        temperature = String.valueOf(intValue);
         return temperature;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
     }
 
     public void setTemperature(String temperature) {

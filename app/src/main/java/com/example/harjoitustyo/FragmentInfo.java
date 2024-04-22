@@ -1,5 +1,6 @@
 package com.example.harjoitustyo;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,16 +32,10 @@ public class FragmentInfo extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-
-
-    private TextView txtLocation;
-    private TextView txtWeather;
-
-    private TextView txtPopulation;
+    private ImageView imgWeather;
+    private TextView txtLocation, txtPopulation, txtWeather;
 
     private RecyclerView recyclerView;
-
     private TabActivity activity;
     private RecyclerView.Adapter adapter;
 
@@ -99,6 +97,7 @@ public class FragmentInfo extends Fragment {
         String weatherData = activity.sendWeatherData();
         String location = activity.sendLocation();
         ArrayList<String> dataList = activity.sendDataList();
+        String icon = activity.sendIconData();
 
 
         txtLocation = view.findViewById(R.id.txtLocation);
@@ -110,10 +109,15 @@ public class FragmentInfo extends Fragment {
         txtWeather = view.findViewById(R.id.txtWeather);
         txtWeather.setText(weatherData);
 
+        // imgWeather = view.findViewById(R.id.imgWeather);
+
+        // Picasso.get(imgWeather.getContext()).load("http://openweathermap.org/img/w/"+icon+".png").into(imgWeather);
 
 
 
-        recyclerView = view.findViewById(R.id.rvInfo);
+
+
+        recyclerView = view.findViewById(R.id.imgWeather);
         // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

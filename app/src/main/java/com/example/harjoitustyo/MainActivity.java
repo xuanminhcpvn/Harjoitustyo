@@ -147,13 +147,16 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
-                            String weather = weatherData.getName() + "\n" +
-                                    "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n" +
-                                    "Lämpötila: " + weatherData.getTemperature() + " K\n" +
-                                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n";
+                            String weather = "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n" +
+                                    "Lämpötila: " + weatherData.getTemperature() + " °C\n" +
+                                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n" +
+                                    "Kosteus: " + weatherData.getHumidity() + "%\n";
+
+                            String icon  = weatherData.getIcon();
 
 
                             Bundle bundle = new Bundle();
+                            intent.putExtra("iconNumber", icon);
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population", pop);
                             intent.putExtra("weatherInfo", weather);

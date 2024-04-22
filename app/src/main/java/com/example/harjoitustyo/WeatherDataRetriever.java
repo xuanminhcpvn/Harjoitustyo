@@ -37,10 +37,14 @@ public class WeatherDataRetriever {
 
             WeatherData wd = new WeatherData(
                     weatherData.get("name").asText(),
+                    // Example = main : rain
+                    // Example description = moderate rain;
                     weatherData.get("weather").get(0).get("main").asText(),
                     weatherData.get("weather").get(0).get("description").asText(),
                     weatherData.get("main").get("temp").asText(),
-                    weatherData.get("wind").get("speed").asText()
+                    weatherData.get("wind").get("speed").asText(),
+                    weatherData.get("weather").get(0).get("icon").asText(),
+                    weatherData.get("main").get("humidity").asText()
             );
             return wd;
 

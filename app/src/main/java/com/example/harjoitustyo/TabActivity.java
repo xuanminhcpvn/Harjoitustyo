@@ -20,6 +20,8 @@ public class TabActivity extends AppCompatActivity {
     private String weatherData;
     private String location;
 
+    private String icon;
+
     private String employmentData;
 
     private ArrayList<String> dataList;
@@ -48,6 +50,7 @@ public class TabActivity extends AppCompatActivity {
         weatherData = getIntent().getStringExtra("weatherInfo");
         location = getIntent().getStringExtra("location");
         employmentData = getIntent().getStringExtra("EmploymentRate");
+        icon = getIntent().getStringExtra("iconNumber");
         dataList = getIntent().getStringArrayListExtra("dataList");
 
 
@@ -98,6 +101,8 @@ public class TabActivity extends AppCompatActivity {
         return populationData;
 
     }
+
+    public String sendIconData() {return icon;}
 
     // in order to return dataList we have to define datalist as private variable
     public ArrayList<String> sendDataList(){
