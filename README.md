@@ -36,16 +36,8 @@ Fragementit = **4**                4. Fragmentti on :)
 10 + (3 + 2 + 3 + 3) + 2 + 3 + 4 + 4 
 
 total = 33
-Työtehtävät                           Vastuuhenkilöt
-Luokkakaavion määrittely               Minh Pham
-Käyttöliittymän suunnittelu            Niilo Pyykkö
-Suunnitelmien päivittäminen            Minh Pham        
-Visa Fragment                          Niilo Pyykkö
-Municipality + Political data          Niilo Pyykkö
-ComparisonFragment                     Minh Pham
-RecyclerVIew                           Minh Pham
-HakuHistoria ja sääkuva                Minh Pham 
-Muut                                   
+Luokkakaavion määrittely, HakuHistoria sääkuva, ComparisonFragment, RecyclerView: Minh Pham
+Käyttöliittymän suunnittelu, Visa Fragment, Municipality + Political data: Niilo Pyykkö                      
 
 
 
