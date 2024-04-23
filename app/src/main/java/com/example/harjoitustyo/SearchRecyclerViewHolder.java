@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class SearchRecyclerViewHolder extends RecyclerView.ViewHolder {
     TextView txtSearch;
 
-
     public SearchRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
         txtSearch = itemView.findViewById(R.id.txtSearch);

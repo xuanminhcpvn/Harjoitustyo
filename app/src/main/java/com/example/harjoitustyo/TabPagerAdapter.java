@@ -20,6 +20,8 @@ public class TabPagerAdapter extends FragmentStateAdapter {
                 return new FragmentCompare();
             case 2:
                 return new FragmentQuiz();
+            case 3:
+                return new KouvolaGame();
             default:
                 return new FragmentInfo();
 
@@ -29,7 +31,7 @@ public class TabPagerAdapter extends FragmentStateAdapter {
     }
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }
 

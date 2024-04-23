@@ -6,6 +6,9 @@ public class CompareObject {
 
     private String popChange;
 
+
+    // I think I don't have any use with this class anymore
+
     public CompareObject(String weather, String pop, String popChange) {
         this.weather = weather;
         this.pop = pop;

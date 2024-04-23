@@ -73,7 +73,7 @@ public class FragmentQuiz extends Fragment {
     private int currentQuestionIndex = 0;
     private int score = 0;
 
-
+    // 8/10 answers are generated from fetched data, Answers are purposedly different from wrong answers for testing
     private void generateAnswer(ArrayList<DataObject> dataObjects,TabActivity activity) {
         correctAnswers.clear();
         //
@@ -115,7 +115,7 @@ public class FragmentQuiz extends Fragment {
     }
 
 
-
+    // This shuffledAnswers method I copied from James Llena
     private String[] shuffledAnswers() {
         String[] answers = new String[4];
         int correctPosition = random.nextInt(4);

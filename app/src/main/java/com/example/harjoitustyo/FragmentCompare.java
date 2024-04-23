@@ -32,14 +32,12 @@ public class FragmentCompare extends Fragment {
     // TextView group for showing result of comparison
 
     private TextView txtweatherResult, txtPopResult, txtPopChangeResult;
-
     private Button buttonCompare, buttonSearch;
     private EditText editCompare1, editCompare2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_compare, container, false);
 
 
@@ -66,15 +64,13 @@ public class FragmentCompare extends Fragment {
 
         try {
             buttonCompare.setOnClickListener(v -> {
-                // Check if txtweather1 is not empty or null
 
                 if (txtWeather1 != null && !txtWeather1.getText().toString().isEmpty()) {
-                    compareAndDisplay(); // Call compareAndDisplay() only if txtweather1 is not empty
+                    compareAndDisplay();
+                    // Call compareAndDisplay() only if txtweather1 is not empty or null not sure does this work,
+                    // I didn't test it again
                 } else {
-                    // Handle the case where txtweather1 is empty or null (optional)
-                    // For example, show a message to the user or perform appropriate actions
-                    // You can add your custom logic here
-                    // Toast.makeText(getContext(), "txtweather1 is empty or null", Toast.LENGTH_SHORT).show();
+
                 }
             });
         } catch (Exception e) {
@@ -96,7 +92,7 @@ public class FragmentCompare extends Fragment {
 
 
         // Future<ArrayList<String>> future1 =service.submit
-
+        // Decided to use service.execute for simplicity
                 service.execute(() -> fetchData(context, editCompareStr1, txtWeather1, txtPop1, txtPopChange1, mr, wr));
 
 
@@ -115,7 +111,7 @@ public class FragmentCompare extends Fragment {
         ArrayList<PopulationData> populationData = mr.getData(context, municipality, 0);
         ArrayList<PopulationData> populationChangeData = mr.getData(context, municipality, 1);
         WeatherData weatherData = wr.getWeatherData(municipality);
-        // agian resourceID 0 is for pop and 1 is for popChange;
+        // again resourceID 0 is for pop and 1 is for popChange;
 
 
         getActivity().runOnUiThread(() -> {
@@ -218,6 +214,10 @@ public class FragmentCompare extends Fragment {
     }
 
 
+    // All comparisonMethods are perfomed here in compareAndDisplay()
+    // Also I have to work around with thread management using separate button for comparing data,
+    // but if possible I would like to know the answer why for example txtWeather1 isn't updated
+    // even when I force the program to compare only after if service.isShutDown() bracket
 
     private void compareAndDisplay( ) {
 

@@ -1,5 +1,7 @@
 package com.example.harjoitustyo;
 
+
+    // TODO DataOBject for dataList in InfoRecyclerView
 public class DataObject {
 
     private String popData;

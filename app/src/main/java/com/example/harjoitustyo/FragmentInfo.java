@@ -79,19 +79,6 @@ public class FragmentInfo extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-
-        // Trying other method, since bundle.getString can't be implemented in fragment IDK?
-        /*
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String populationInfo = bundle.getString("population");
-            String weatherInfo = bundle.getString("weatherInfo");
-
-            txtPopulation.setText(populationInfo);
-            txtWeather.setText(weatherInfo);
-        }
-         */
-
         // TODO instead do this https://stackoverflow.com/questions/46050185/android-pass-data-from-activity-to-fragment-in-viewpager
 
         TabActivity activity = (TabActivity) getActivity();
@@ -102,28 +89,15 @@ public class FragmentInfo extends Fragment {
 
         txtLocation = view.findViewById(R.id.txtLocation);
         txtLocation.setText(location);
-        // imgWeather = view.findViewById(R.id.imgWeather);
-
-        // Picasso.get(imgWeather.getContext()).load("http://openweathermap.org/img/w/"+icon+".png").into(imgWeather);
-
-
 
 
 
         recyclerView = view.findViewById(R.id.imgWeather);
-        // Laitetaanko LinearLayoutManageriin getContext vai getActivity, this sijaan ???
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        // getApplicationContext sijaan getContext ???
-
-
 
         adapter = new InfoRecyclerViewAdapter(getContext(),dataList.getInstance().getDatas());
-        // RecyclerView.Adapter adapter = new GroceryListAdapter(getApplicationContext(), groceryStorage.getInstance().getGroceries());
         recyclerView.setAdapter(adapter);
-
-
-
         return view;
     }
 

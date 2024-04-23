@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+        // TODO since everything is the same and only query.json file is different,
+//      Population ja population increase can be searched with the same Retriever
+//      (only need to put ResourceID to indicate which query.json file is going to be used.
+
 public class PopulationDataRetriever {
 
 

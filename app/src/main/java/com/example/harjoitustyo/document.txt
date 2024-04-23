@@ -1,3 +1,6 @@
+
+Name of all interface id (for the purpose of finding them easily)
+
 Widget ids:
     MainActivity:
         searchButton = searchButton
