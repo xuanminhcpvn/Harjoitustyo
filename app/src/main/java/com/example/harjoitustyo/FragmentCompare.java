@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -63,7 +64,22 @@ public class FragmentCompare extends Fragment {
 
         buttonSearch.setOnClickListener(v -> Search2Data());
 
-        buttonCompare.setOnClickListener(v -> compareAndDisplay() );
+        try {
+            buttonCompare.setOnClickListener(v -> {
+                // Check if txtweather1 is not empty or null
+
+                if (txtWeather1 != null && !txtWeather1.getText().toString().isEmpty()) {
+                    compareAndDisplay(); // Call compareAndDisplay() only if txtweather1 is not empty
+                } else {
+                    // Handle the case where txtweather1 is empty or null (optional)
+                    // For example, show a message to the user or perform appropriate actions
+                    // You can add your custom logic here
+                    // Toast.makeText(getContext(), "txtweather1 is empty or null", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         return view;
@@ -173,9 +189,9 @@ public class FragmentCompare extends Fragment {
         if (population1 == population2) {
             return "Population is the same for both.";
         } else if (population1 > population2) {
-            return "Population 1 is greater.";
+            return "Population in \n"+editCompare1.getText().toString()+" is greater.";
         } else {
-            return "Population 2 is greater.";
+            return "Population in \n"+editCompare2.getText().toString()+" is greater.";
         }
     }
 
@@ -195,9 +211,9 @@ public class FragmentCompare extends Fragment {
         if (change1 == change2) {
             return "Population change is the same for both.";
         } else if (change1 > change2) {
-            return "Population change for 1 is greater.";
+            return "Population change in \n"+editCompare1.getText().toString()+" is greater.";
         } else {
-            return "Population change for 2 is greater.";
+            return "Population change in \n"+editCompare2.getText().toString()+" is greater.";
         }
     }
 

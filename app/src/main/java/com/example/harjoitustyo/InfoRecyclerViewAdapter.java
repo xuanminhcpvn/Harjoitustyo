@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerViewHolder> {
     private Context context;
     private TabActivity tabActivity;
 
+    private String icon;
 
     // TODO if you want to implement other data node, must create ArrayList for them ? and then
     // TODO add it to the builder
@@ -44,6 +47,12 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
         holder.weatherWind.setText(datas.get(position).getWeatherWindData());
         holder.weatherDescription.setText(datas.get(position).getWeatherDescriptionData());
 
+        icon = datas.get(position).getWeatherIconData();
+
+        String url = "https://openweatherMap.org/img/w/"+icon+".png";
+        Picasso.get()
+                .load(url)
+                .resize(1000,1000).centerCrop().into(holder.imageWeather);
         // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 

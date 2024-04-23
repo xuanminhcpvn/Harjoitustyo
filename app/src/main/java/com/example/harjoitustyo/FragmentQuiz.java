@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FragmentQuiz extends Fragment {
@@ -19,46 +20,37 @@ public class FragmentQuiz extends Fragment {
     private Button option2Button;
     private Button option3Button;
     private Button option4Button;
+    private DataList dataList;
 
     private String answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10;
 
+    private ArrayList<DataObject> dataObjects;
+
+    private ArrayList<String> correctAnswers = new ArrayList<>();
    private String[] questions = {
-    "Kuinka monta asukasta kunnassa on?",
-    "Kuinka monta työpaikkaa kunnassa on?",
-    "Kuinka monta perhettä kunnassa on?",
-    "Kuinka monta prosenttia asukkaista on eläkeläisiä?",
-    "Kuinka monta prosenttia asukkaista on ruotsinkielisiä?",
-    "Mikä on työttömien osuus työvoimasta %?",
-    "Mikä on kunnan taajama-aste %?",
-    "Kuinka suuri osuus työpaikoista kuuluu alkutuotantoon kunnassa?",
+    "Mikä on kunnan nimi?",
+    "Kuinka monta asukasta kunnassa on vuonna 2022?",
+    "Mikä on kunnan työllisyysaste 2022?",
+    "Mikä on kunnan työpaikkaomavaraisuus 2022?",
+    "Millainen sää kunnassa on nyt",
+    "Mikä on kunnan sään kosteusaste%?",
+    "Mikä on kunnan sään tuulen nopeus?",
+    "Mikä on sään lämpötila tänään?",
     "Kuinka suuri osuus työpaikoista kuuluu jalostukseen kunnassa?",
     "Kuinka suuri osuus työpaikoista kuuluu palveluihin kunnassa?",
 };
 
-    private String[] correctAnswers = {
-            answer1,
-            answer2,
 
-
-    "Correct Answer 3",
-    "Correct Answer 4",
-    "Correct Answer 5",
-    "Correct Answer 6",
-    "Correct Answer 7",
-    "Correct Answer 8",
-    "Correct Answer 9",
-    "Correct Answer 10"
-};
 
     private String[][] incorrectAnswers = {
+        { "Helsinki", "Vantaa", "Espoo" },
         { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
         { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { "Snow", "Rain", "Cloudy" },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
+        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
         { String.valueOf(getRandomInt()), String.valueOf(getRandomInt()), String.valueOf(getRandomInt()) },
-        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
-        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
-        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
-        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
-        { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
         { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) },
         { String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()), String.valueOf(getRandomPercentage()) }
     };
@@ -82,13 +74,29 @@ public class FragmentQuiz extends Fragment {
     private int score = 0;
 
 
+    private void generateAnswer(ArrayList<DataObject> dataObjects,TabActivity activity) {
+        correctAnswers.clear();
+        //
+        correctAnswers.add(activity.sendLocation());
+        correctAnswers.add(dataObjects.get(0).getPopData().replace("Population 2022: ", ""));
+        correctAnswers.add(dataObjects.get(0).getEmploymentData().replace("Employment rate of year 2022:",""));
+        correctAnswers.add(dataObjects.get(0).getJobS().replace("Job self-suffieciency rate of year 2022:",""));
+        correctAnswers.add(dataObjects.get(0).getWeatherDescriptionData().replace("Sää nyt:",""));
+        correctAnswers.add(dataObjects.get(0).getWeatherHumidityData().replace("Kosteus",""));
+        correctAnswers.add(dataObjects.get(0).getWeatherWindData().replace("Tuulennopeus:",""));
+        correctAnswers.add(dataObjects.get(0).getWeatherTempData());
+        correctAnswers.add("Oikea vastaus");
+        correctAnswers.add("Oikea vastaus");
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
 
         TabActivity activity = (TabActivity) getActivity();
-        answer1 = activity.sendPopData();
-        answer2 = activity.sendEmploymentData();
+        dataObjects = dataList.getInstance().getDatas();
+
+        generateAnswer(dataObjects,activity);
 
         questionTextView = view.findViewById(R.id.questionTextView);
         option1Button = view.findViewById(R.id.option1Button);
@@ -106,16 +114,33 @@ public class FragmentQuiz extends Fragment {
         return view;
     }
 
+
+
+    private String[] shuffledAnswers() {
+        String[] answers = new String[4];
+        int correctPosition = random.nextInt(4);
+        for (int i = 0; i < 4; i++) {
+            if (i == correctPosition) {
+                answers[i] = correctAnswers.get(currentQuestionIndex);
+            } else {
+                int incorrectIndex = random.nextInt(3);
+                answers[i] = incorrectAnswers[currentQuestionIndex][incorrectIndex];
+            }
+        }
+        return answers;
+    }
+
     private void displayQuestion() {
         questionTextView.setText(questions[currentQuestionIndex]);
-        option1Button.setText(correctAnswers[currentQuestionIndex]);
-        option2Button.setText(incorrectAnswers[currentQuestionIndex][0]);
-        option3Button.setText(incorrectAnswers[currentQuestionIndex][1]);
-        option4Button.setText(incorrectAnswers[currentQuestionIndex][2]);
+        String[] shuffledAnswers = shuffledAnswers();
+        option1Button.setText(shuffledAnswers[0]);
+        option2Button.setText(shuffledAnswers[1]);
+        option3Button.setText(shuffledAnswers[2]);
+        option4Button.setText(shuffledAnswers[3]);
     }
 
     private void checkAnswer(String selectedAnswer) {
-        if (selectedAnswer.equals(correctAnswers[currentQuestionIndex])) {
+        if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
             score++;
         }
 

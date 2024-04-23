@@ -7,17 +7,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
 
 // TODO ALL textView and ImageView Component here
 
     // TextView textPop, textEmploy, weatherName, weatherMain, weatherDescription, weatherTemp, weatherWind;
 
-    // ImageView imageWeather;
+    ImageView imageWeather;
 
     TextView textPop,  textEmploy, textJobS;
 
     TextView weatherDescription, weatherTemp, weatherHumidity, weatherWind;
+
 
 
     // TODO this is important in order to not get outofindex error only add graphical components
@@ -33,7 +35,13 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
         weatherTemp = itemView.findViewById(R.id.weatherTemp);
         weatherHumidity = itemView.findViewById(R.id.weatherHumidity);
         weatherWind = itemView.findViewById(R.id.weatherWind);
-        // imageWeather = itemView.findViewById(R.id.imageWeather);
+        imageWeather = itemView.findViewById(R.id.imageWeather);
+
+
+
+
+        // Load weather icon using Glide library
+
 
     }
 }

@@ -32,10 +32,12 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageWeather"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="162dp"
         android:foregroundGravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout

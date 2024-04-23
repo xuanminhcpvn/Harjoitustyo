@@ -18,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -49,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
+
+
 
 
 
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
                             for ( JobSelfSufficiency data4 : jobData) {
                                 if (data4.getYear() == 2022) {
-                                    jobS = "Job self-suffieciency rate of year" + data4.getYear() +": "+data4.getPopulation() + "%\n";
+                                    jobS = "Job self-suffieciency rate of year " + data4.getYear() +": "+data4.getPopulation() + "%\n";
                                 }
                             }
 
