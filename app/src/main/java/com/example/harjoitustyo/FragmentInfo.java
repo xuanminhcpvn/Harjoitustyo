@@ -96,21 +96,12 @@ public class FragmentInfo extends Fragment {
 
         TabActivity activity = (TabActivity) getActivity();
         String populationData = activity.sendPopData();
-        String weatherData = activity.sendWeatherData();
         String location = activity.sendLocation();
 
         String icon = activity.sendIconData();
 
-
         txtLocation = view.findViewById(R.id.txtLocation);
         txtLocation.setText(location);
-
-        txtPopulation = view.findViewById(R.id.txtPopulation);
-        txtPopulation.setText(populationData);
-
-        txtWeather = view.findViewById(R.id.txtWeather);
-        txtWeather.setText(weatherData);
-
         // imgWeather = view.findViewById(R.id.imgWeather);
 
         // Picasso.get(imgWeather.getContext()).load("http://openweathermap.org/img/w/"+icon+".png").into(imgWeather);

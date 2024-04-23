@@ -11,6 +11,7 @@
         android:id="@+id/searchButton"
         android:layout_width="360dp"
         android:layout_height="45dp"
+        android:backgroundTint="#E91E63"
         android:onClick="searchMunicipality"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"

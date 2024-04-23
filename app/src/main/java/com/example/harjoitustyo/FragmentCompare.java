@@ -55,8 +55,8 @@ public class FragmentCompare extends Fragment {
         txtPopChangeResult = view.findViewById(R.id.txtPopChangeResult);
 
         // TODO vaihda näiden paikka
-        editCompare1 = view.findViewById(R.id.editCompare1);
-        editCompare2 = view.findViewById(R.id.editCompare2);
+        editCompare1 = view.findViewById(R.id.editCompare2);
+        editCompare2 = view.findViewById(R.id.editCompare1);
 
         buttonSearch = view.findViewById(R.id.buttonSearch);
         buttonCompare = view.findViewById(R.id.buttonCompare);
@@ -131,9 +131,9 @@ public class FragmentCompare extends Fragment {
 
 
 
-            weather = "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n" +
-                    "Lämpötila: " + weatherData.getTemperature() + " °C\n" +
-                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n" +
+            weather = "" + weatherData.getMain() +
+                    weatherData.getTemperature() + " °C\n" +
+                    "Tuuli: " + weatherData.getWindSpeed() + " m/s\n" +
                     "Kosteus: " + weatherData.getHumidity() + "%\n";
 
 

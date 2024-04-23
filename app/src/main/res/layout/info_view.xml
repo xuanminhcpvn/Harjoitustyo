@@ -4,43 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#05F6E0"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textPop"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Population: Number" />
+        android:layout_height="38dp"
+        android:hint="Population: Number"
+        android:textColorHint="#515151"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textEmploy"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:hint="Employment: Number" />
+        android:layout_height="40dp"
+        android:hint="Employment: Number"
+        android:textColorHint="#515151"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textJobS"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Employment (Sufficiency) :Number" />
+        android:layout_height="40dp"
+        android:hint="Employment (Sufficiency) :Number"
+        android:textColorHint="#515151"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="129dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/weatherTemp"
+            android:layout_width="410dp"
+            android:layout_height="61dp"
+            android:gravity="center"
+            android:text="35*C"
+            android:textColor="#F80000"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/weatherDescription"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="center"
+            android:hint="weatherDescription"
+            android:textColor="#191919"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:orientation="vertical">
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="203dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/wind" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                app:srcCompat="@drawable/humidity_percentage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/weatherDescription"
-                android:layout_width="match_parent"
-                android:layout_height="98dp"
-                android:hint="weatherDescription" />
+                android:id="@+id/weatherWind"
+                android:layout_width="203dp"
+                android:layout_height="85dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#191919"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/weatherHumidity"
+                android:layout_width="209dp"
+                android:layout_height="83dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#191919"
+                android:textStyle="bold" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -2,15 +2,12 @@ package com.example.harjoitustyo;
 
 import static android.app.PendingIntent.getActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -41,8 +38,12 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
     public void onBindViewHolder(@NonNull InfoRecyclerViewHolder holder, int position) {
         holder.textPop.setText(datas.get(position).getPopData());
         holder.textEmploy.setText(datas.get(position).getEmploymentData());
-        holder.weatherDescription.setText(datas.get(position).getWeatherData());
         holder.textJobS.setText(datas.get(position).getJobS());
+        holder.weatherHumidity.setText(datas.get(position).getWeatherHumidityData());
+        holder.weatherTemp.setText(datas.get(position).getWeatherTempData());
+        holder.weatherWind.setText(datas.get(position).getWeatherWindData());
+        holder.weatherDescription.setText(datas.get(position).getWeatherDescriptionData());
+
         // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 

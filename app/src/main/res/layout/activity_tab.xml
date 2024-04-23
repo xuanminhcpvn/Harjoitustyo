@@ -11,34 +11,49 @@
         android:id="@+id/viewArea"
         android:layout_width="414dp"
         android:layout_height="683dp"
+        android:layout_marginTop="48dp"
+        android:foregroundTint="#D52D2D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tabLayout" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="#FFEB3B"
+        app:tabIndicatorFullWidth="true"
+        app:tabSelectedTextColor="#EFD9D9"
+        app:tabTextColor="#EFD9D9">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#E91E63"
+            android:backgroundTint="#E91E63"
             android:text="INFO" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabCompare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#E91E63"
+            android:backgroundTint="#E91E63"
             android:text="COMPARISON" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#E91E63"
+            android:backgroundTint="#E91E63"
+            android:foregroundTint="#EC1010"
             android:text="QUIZ" />
     </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

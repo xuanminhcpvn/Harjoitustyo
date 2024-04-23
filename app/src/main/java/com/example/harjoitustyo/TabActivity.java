@@ -1,9 +1,6 @@
 package com.example.harjoitustyo;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,16 +11,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class TabActivity extends AppCompatActivity {
 
     // Define variables first
     private String populationData;
 
-    private String emp, weather, pop, popChange, jobS;
+    private String emp, weatherDescription, pop, popChange, jobS, weatherWind, weatherHumidity, weatherTemp;
     private String weatherData;
     private String location;
 
@@ -54,11 +47,15 @@ public class TabActivity extends AppCompatActivity {
         First have to put data in the original activity(Here it is main) to a Bundle package and
          send it with command putExtra() */
         pop = getIntent().getStringExtra("population");
-        weather = getIntent().getStringExtra("weatherInfo");
+        weatherDescription = getIntent().getStringExtra("weatherDescription");
+        weatherWind = getIntent().getStringExtra("weatherWind");
+        weatherHumidity = getIntent().getStringExtra("weatherHumidity");
+        weatherTemp = getIntent().getStringExtra("weatherTemp");
         location = getIntent().getStringExtra("location");
         emp = getIntent().getStringExtra("EmploymentRate");
         icon = getIntent().getStringExtra("iconNumber");
         jobS = getIntent().getStringExtra("jobS");
+
 
 
 
@@ -105,6 +102,13 @@ public class TabActivity extends AppCompatActivity {
 
     }
 
+    public String sendWeatherTemp () {return weatherTemp;}
+
+    public String sendWeatherHumidity () {return weatherHumidity;}
+
+    public String sendWeatherWind() {return weatherWind;}
+
+
     public String sendPopChangeData() {return popChange; }
 
     public String sendIconData() {return icon;}
@@ -113,10 +117,11 @@ public class TabActivity extends AppCompatActivity {
 
     public String sendJobSData() {return jobS;}
 
-    public String sendWeatherData(){
-        return weather;
+    public String sendWeatherDescription(){
+        return weatherDescription;
     }
 
     public String sendEmploymentData() { return emp;}
+
 
 }

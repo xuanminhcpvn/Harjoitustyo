@@ -3,20 +3,30 @@ package com.example.harjoitustyo;
 public class DataObject {
 
     private String popData;
-    private String weatherData;
+    private String weatherDescriptionData;
     private String employmentData;
     private String politicalData;
 
+    private String weatherWindData;
+
+    private String weatherHumidityData;
+
+    private String weatherTempData;
+
+    private String weatherIconData;
+
     private String jobS;
-    public DataObject(String popData, String weatherData, String employmentData, String jobS) {
+
+    public DataObject(String popData, String weatherDescriptionData, String employmentData, String weatherWindData, String weatherHumidityData, String weatherTempData, String weatherIconData, String jobS) {
         this.popData = popData;
-        this.weatherData = weatherData;
+        this.weatherDescriptionData = weatherDescriptionData;
         this.employmentData = employmentData;
+        this.weatherWindData = weatherWindData;
+        this.weatherHumidityData = weatherHumidityData;
+        this.weatherTempData = weatherTempData;
+        this.weatherIconData = weatherIconData;
         this.jobS = jobS;
     }
-
-
-    public String getJobS() {return jobS;}
 
     public String getPopData() {
         return popData;
@@ -26,12 +36,12 @@ public class DataObject {
         this.popData = popData;
     }
 
-    public String getWeatherData() {
-        return weatherData;
+    public String getWeatherDescriptionData() {
+        return weatherDescriptionData;
     }
 
-    public void setWeatherData(String weatherData) {
-        this.weatherData = weatherData;
+    public void setWeatherDescriptionData(String weatherDescriptionData) {
+        this.weatherDescriptionData = weatherDescriptionData;
     }
 
     public String getEmploymentData() {
@@ -39,7 +49,7 @@ public class DataObject {
     }
 
     public void setEmploymentData(String employmentData) {
-        employmentData = employmentData;
+        this.employmentData = employmentData;
     }
 
     public String getPoliticalData() {
@@ -47,6 +57,46 @@ public class DataObject {
     }
 
     public void setPoliticalData(String politicalData) {
-        politicalData = politicalData;
+        this.politicalData = politicalData;
+    }
+
+    public String getWeatherWindData() {
+        return weatherWindData;
+    }
+
+    public void setWeatherWindData(String weatherWindData) {
+        this.weatherWindData = weatherWindData;
+    }
+
+    public String getWeatherHumidityData() {
+        return weatherHumidityData;
+    }
+
+    public void setWeatherHumidityData(String weatherHumidityData) {
+        this.weatherHumidityData = weatherHumidityData;
+    }
+
+    public String getWeatherTempData() {
+        return weatherTempData;
+    }
+
+    public void setWeatherTempData(String weatherTempData) {
+        this.weatherTempData = weatherTempData;
+    }
+
+    public String getWeatherIconData() {
+        return weatherIconData;
+    }
+
+    public void setWeatherIconData(String weatherIconData) {
+        this.weatherIconData = weatherIconData;
+    }
+
+    public String getJobS() {
+        return jobS;
+    }
+
+    public void setJobS(String jobS) {
+        this.jobS = jobS;
     }
 }

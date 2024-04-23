@@ -9,18 +9,22 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="135dp"
-        android:layout_height="25dp"
+        android:layout_width="134dp"
+        android:layout_height="28dp"
         android:layout_marginTop="184dp"
+        android:background="#AEABAB"
         android:text="Weather"
+        android:textColor="#050505"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editCompare2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:id="@+id/editCompare1"
+        android:layout_width="214dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:background="#AEABAB"
         android:ems="10"
         android:hint="Insert first municipality"
         android:inputType="text"
@@ -30,15 +34,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editCompare1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:id="@+id/editCompare2"
+        android:layout_width="212dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="56dp"
+        android:background="#AEABAB"
         android:ems="10"
         android:hint="Insert second municipality"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,8 +51,10 @@
         android:id="@+id/buttonSearch"
         android:layout_width="230dp"
         android:layout_height="47dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#E91E63"
         android:text="Search"
+        android:textColor="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +65,7 @@
         android:layout_width="414dp"
         android:layout_height="114dp"
         android:layout_marginTop="212dp"
+        android:background="#FF0000"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -68,19 +76,31 @@
             android:id="@+id/txtWeather1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPop1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPopChange1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,6 +109,7 @@
         android:layout_height="128dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="324dp"
+        android:background="#03A9F4"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -99,46 +120,77 @@
             android:id="@+id/txtWeather2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPop2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPopChange2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="407dp"
-        android:layout_height="146dp"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="409dp"
+        android:layout_height="131dp"
+        android:background="#FFEB3B"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/txtWeatherResult"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#8BC34A"
+            android:backgroundTint="#3AC840"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF" />
 
         <TextView
             android:id="@+id/txtPopResult"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#8BC34A"
+            android:backgroundTint="#3AC840"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPopChangeResult"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#8BC34A"
+            android:backgroundTint="#3AC840"
+            android:text="a"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FFFFFF"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -147,7 +199,10 @@
         android:layout_height="29dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="140dp"
+        android:background="#AEABAB"
         android:text="Population 2022"
+        android:textColor="#050505"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,26 +211,61 @@
         android:layout_width="136dp"
         android:layout_height="29dp"
         android:layout_marginTop="184dp"
-        android:text="Population increse 2022"
+        android:background="#AEABAB"
+        android:text="Pop +/-"
+        android:textColor="#050505"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="textView14,textView15" />
 
     <Button
         android:id="@+id/buttonCompare"
         android:layout_width="208dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="44dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="#E91E63"
+        android:text="Compare here!"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="41dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCompare">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="137dp"
+            android:layout_height="36dp"
+            android:background="#AEABAB"
+            android:text="Result of weather comparision"
+            android:textColor="#050505"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="135dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="4dp"
+            android:background="#AEABAB"
+            android:text="Result of popChange comparison"
+            android:textColor="#050505"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="136dp"
+            android:layout_height="36dp"
+            android:background="#AEABAB"
+            android:text="Result of pop comparison"
+            android:textColor="#050505"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

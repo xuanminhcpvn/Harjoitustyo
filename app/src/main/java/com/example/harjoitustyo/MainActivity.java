@@ -25,7 +25,6 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity implements SearchRecyclerViewAdapter.OnItemClickListener, Activity {
 
     private EditText municipality;
-
     private View view;
     private String location;
     private String searchTerm;
@@ -182,14 +181,14 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
 
                             // txtPopulationData.setText(s);
                             // TODO instead we bundle and send it to Fragment
-                            String weather = "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n" +
-                                    "Lämpötila: " + weatherData.getTemperature() + " °C\n" +
-                                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n" +
-                                    "Kosteus: " + weatherData.getHumidity() + "%\n";
+                            String weatherDescription = "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() + ")\n";
 
+                            String weatherTemp = weatherData.getTemperature() + " °C\n";
+                            String weatherWind = "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n";
+                            String weatherHumidity = "Kosteus: " + weatherData.getHumidity() + "%\n";
                             String icon  = weatherData.getIcon();
 
-                            DataObject data = new DataObject(pop,weather,emp,jobS);
+                            DataObject data = new DataObject(pop,weatherDescription,emp,weatherWind,weatherHumidity,weatherTemp,icon,jobS);
                             dataList.getInstance().addDataObject(data);
 
                             Bundle bundle = new Bundle();
@@ -198,7 +197,10 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
                             intent.putExtra("iconNumber", icon);
                             // TODO jotta tieto välittyy toiselle activiteetille
                             intent.putExtra("population", pop);
-                            intent.putExtra("weatherInfo", weather);
+                            intent.putExtra("weatherTemp", weatherTemp);
+                            intent.putExtra("weatherWind", weatherWind);
+                            intent.putExtra("weatherHumidity", weatherHumidity);
+                            intent.putExtra("weatherDescription", weatherDescription);
                             intent.putExtra("location", location);
                             intent.putExtra("EmploymentRate", emp);
 
