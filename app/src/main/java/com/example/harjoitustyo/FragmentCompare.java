@@ -12,14 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class FragmentCompare extends Fragment {
 
@@ -28,14 +24,15 @@ public class FragmentCompare extends Fragment {
     // TextView group for second dataset
     private TextView txtWeather2, txtPop2, txtPopChange2;
 
-    private ArrayList<String> ListData, dataCompare1, dataCompare2;
+    private ArrayList<CompareObject> compareObjects;
 
     private String pop,popChange,weather;
+
     // TextView group for showing result of comparison
 
     private TextView txtweatherResult, txtPopResult, txtPopChangeResult;
 
-    private Button buttonCompare;
+    private Button buttonCompare, buttonSearch;
     private EditText editCompare1, editCompare2;
 
     @Override
@@ -61,14 +58,18 @@ public class FragmentCompare extends Fragment {
         editCompare1 = view.findViewById(R.id.editCompare1);
         editCompare2 = view.findViewById(R.id.editCompare2);
 
+        buttonSearch = view.findViewById(R.id.buttonSearch);
         buttonCompare = view.findViewById(R.id.buttonCompare);
 
-        buttonCompare.setOnClickListener(v -> Compare());
+        buttonSearch.setOnClickListener(v -> Search2Data());
+
+        buttonCompare.setOnClickListener(v -> compareAndDisplay() );
+
 
         return view;
     }
 
-    private void Compare() {
+    private void Search2Data() {
         Context context = getContext();
         String editCompareStr1 = editCompare1.getText().toString();
         String editCompareStr2 = editCompare2.getText().toString();
@@ -77,56 +78,24 @@ public class FragmentCompare extends Fragment {
         WeatherDataRetriever wr = new WeatherDataRetriever();
         ExecutorService service = Executors.newFixedThreadPool(2);
 
-        // Credit for SammyMohibby and James for helping shorten this part
-        service.execute(() -> dataCompare1 = fetchData(context, editCompareStr1, txtWeather1, txtPop1, txtPopChange1, mr, wr));
-        Log.d("LUT", txtWeather1.getText().toString());
+
+        // Future<ArrayList<String>> future1 =service.submit
+
+                service.execute(() -> fetchData(context, editCompareStr1, txtWeather1, txtPop1, txtPopChange1, mr, wr));
 
 
-        service.execute(() -> dataCompare2 = fetchData(context, editCompareStr2, txtWeather2, txtPop2, txtPopChange2, mr, wr));
+        //Future<ArrayList<String>> future2 = service.submit(() ->
+               service.execute(() -> fetchData(context, editCompareStr2, txtWeather2, txtPop2, txtPopChange2, mr, wr));
 
         service.shutdown();
 
         Log.d("LUT", txtWeather2.getText().toString());
 
-
-        // Tää vastaa kolmatta sarakkeeetta
-        // Ongelmana Lista ei ole voitu luoda ennen kun käydään tätä koodillohkoa läpi ?
-
-        /*
-        if (service.isShutdown()) {
-
-            // Update the UI with comparison results on the main thread
-            getActivity().runOnUiThread(() -> {
-                // dataCompare 0 = weather 1 = pop 2= popChange
-                // Solution is a bit unwise
-                try {
-                    String weatherResult = compareWeather(dataCompare1.get(0), dataCompare2.get(0));
-                    String popResult = comparePopulation(dataCompare1.get(1), dataCompare2.get(1));
-                    String popChangeResult = comparePopulationChange(dataCompare1.get(2), dataCompare2.get(2));
-                    txtweatherResult.setText(weatherResult);
-                    txtPopResult.setText(popResult);
-                    txtPopChangeResult.setText(popChangeResult);
-
-                    dataCompare1.clear();
-                    dataCompare2.clear();
-                } catch (NullPointerException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-        }
-
-        */
-
-
     }
 
 
-
-
-
-    private ArrayList<String> fetchData(Context context, String municipality, TextView weatherView, TextView popView, TextView popChangeView,
-                           PopulationDataRetriever mr, WeatherDataRetriever wr) {
+    private void fetchData(Context context, String municipality, TextView weatherView, TextView popView, TextView popChangeView,
+                                        PopulationDataRetriever mr, WeatherDataRetriever wr) {
         ArrayList<PopulationData> populationData = mr.getData(context, municipality, 0);
         ArrayList<PopulationData> populationChangeData = mr.getData(context, municipality, 1);
         WeatherData weatherData = wr.getWeatherData(municipality);
@@ -175,14 +144,6 @@ public class FragmentCompare extends Fragment {
 
         });
 
-
-        ArrayList<String> listData = new ArrayList<>();
-        listData.add(0,weather);
-        listData.add(1,pop);
-        listData.add(2,popChange);
-
-
-        return listData;
     }
 
     private String compareWeather(String weather1, String weather2) {
@@ -240,6 +201,24 @@ public class FragmentCompare extends Fragment {
         }
     }
 
+
+
+    private void compareAndDisplay( ) {
+
+            String weather1 = txtWeather1.getText().toString();
+            String weather2 = txtWeather2.getText().toString();
+            String pop1 = txtPop1.getText().toString();
+            String pop2 = txtPop2.getText().toString();
+            String popChange1 = txtPopChange1.getText().toString();
+            String popChange2 = txtPopChange2.getText().toString();
+            String weatherResult = compareWeather(weather1, weather2);
+            String popResult = comparePopulation(pop1, pop2);
+            String popChangeResult = comparePopulationChange(popChange1, popChange2);
+            Log.d("Ongelma", "data haettu");
+            txtweatherResult.setText(weatherResult);
+            txtPopResult.setText(popResult);
+            txtPopChangeResult.setText(popChangeResult);
+    }
 
 }
 

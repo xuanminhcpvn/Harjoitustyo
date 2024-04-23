@@ -43,11 +43,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonCompare"
+        android:id="@+id/buttonSearch"
         android:layout_width="230dp"
         android:layout_height="47dp"
         android:layout_marginTop="124dp"
-        android:text="Compare"
+        android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,5 +166,16 @@
         android:layout_height="wrap_content"
         app:barrierDirection="top"
         app:constraint_referenced_ids="textView14,textView15" />
+
+    <Button
+        android:id="@+id/buttonCompare"
+        android:layout_width="208dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="44dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
