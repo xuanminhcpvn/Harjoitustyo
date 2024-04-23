@@ -101,14 +101,6 @@ public class PopulationDataRetriever {
                 os.write(input, 0, input.length);
             }
 
-            /*
-            InputStream ins = context.getResources().openRawResource(R.raw.query);
-            JsonNode jsonInputString = objectMapper.readTree(ins);
-            ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
-            byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
-            OutputStream os = con.getOutputStream();
-            os.write(input, 0, input.length); */
-
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
             StringBuilder response = new StringBuilder();
             String line = null;

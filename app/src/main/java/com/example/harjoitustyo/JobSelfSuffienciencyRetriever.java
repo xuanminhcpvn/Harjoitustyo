@@ -79,7 +79,7 @@ public class JobSelfSuffienciencyRetriever {
             }
 
             for (JsonNode node : municipalityData.get("value")) {
-                populations.add(Double.parseDouble(node.asText()));  // Parsing as Double
+                populations.add(Double.parseDouble(node.asText()));
             }
 
             ArrayList<JobSelfSufficiency> jobSelfSufficiency = new ArrayList<>();
@@ -94,9 +94,9 @@ public class JobSelfSuffienciencyRetriever {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
-            e.printStackTrace();  // Catching NumberFormatException if parsing fails
+            e.printStackTrace();
         }
 
-        return null;  // Return null if there was an exception or error
+        return null;
     }
 }

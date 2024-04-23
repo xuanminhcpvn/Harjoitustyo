@@ -93,10 +93,10 @@ public class EmploymentDataRetriever {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
-                e.printStackTrace();  // Catching NumberFormatException if parsing fails
+                e.printStackTrace();
             }
 
-            return null;  // Return null if there was an exception or error
+            return null;
         }
     }
 

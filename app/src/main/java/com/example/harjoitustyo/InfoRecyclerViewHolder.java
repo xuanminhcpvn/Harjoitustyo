@@ -12,8 +12,6 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
 
 // TODO ALL textView and ImageView Component here
 
-    // TextView textPop, textEmploy, weatherName, weatherMain, weatherDescription, weatherTemp, weatherWind;
-
     ImageView imageWeather;
 
     TextView textPop,  textEmploy, textJobS;
@@ -36,11 +34,6 @@ public class InfoRecyclerViewHolder extends RecyclerView.ViewHolder {
         weatherHumidity = itemView.findViewById(R.id.weatherHumidity);
         weatherWind = itemView.findViewById(R.id.weatherWind);
         imageWeather = itemView.findViewById(R.id.imageWeather);
-
-
-
-
-        // Load weather icon using Glide library
 
 
     }

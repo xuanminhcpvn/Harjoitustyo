@@ -54,7 +54,6 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
         Picasso.get()
                 .load(url)
                 .resize(1000,1000).centerCrop().into(holder.imageWeather);
-        // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 
     @Override

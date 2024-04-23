@@ -69,6 +69,7 @@ public class FragmentCompare extends Fragment {
                     compareAndDisplay();
                     // Call compareAndDisplay() only if txtweather1 is not empty or null not sure does this work,
                     // I didn't test it again
+                    // Although it can be avoided by fetching data first
                 } else {
 
                 }

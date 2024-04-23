@@ -3,7 +3,7 @@ package com.example.harjoitustyo;
 public class EmploymentData {
 
     private int year;
-    private double population; // Using double to handle decimal values
+    private double population;
 
     public EmploymentData(int y, double p) {
         year = y;

@@ -5,7 +5,6 @@ public class PopulationData {
         private int population;
 
 
-        // Muokattu sopivaksi opettajan versioon
         public PopulationData(int y, int p) {
             year = y;
             population = p;

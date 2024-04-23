@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class JobSelfSufficiency {
 
     private int year;
-    private double population; // Using double to handle decimal values
+    private double population;
 
     public JobSelfSufficiency(int y, double p) {
         year = y;
