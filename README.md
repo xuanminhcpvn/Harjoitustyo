@@ -13,7 +13,8 @@ Ohjelma sisältää
 perustoiminnallisuudet 
 
 Dokumentaatio                    Käyttöliittymän kuvauksessa on kaikki samat ominaisuudet, toteutus kuitenkin eri.
-                                 Linkki Figma: https://www.figma.com/file/bsuJtqI5ykJM3qZKMkGs2V/Material-3-Design-Kit-                                       (Community)?type=design&node-id=54809-31741&mode=design&t=GNkcJADlgUuNwLt6-0.                                                Pdf muodossa myös erillisessa tiedostossa
+                                 Linkki Figma: https://www.figma.com/file/bsuJtqI5ykJM3qZKMkGs2V/Material-3-Design-Kit-                                       (Community)?type=design&node-id=54809-31741&mode=design&t=GNkcJADlgUuNwLt6-0.Pdf muodossa myös erillisessa tiedostossa luokkakaaviot ja käyttöliitymät
+                                 
 
 Pakollinen API käytössä          = **10p**
 
