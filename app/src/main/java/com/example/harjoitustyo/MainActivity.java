@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
     private RecyclerView rvSearches;
     private SearchList searchesStorage;
 
-
-
-    //
+    // All datas are fetch in main activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,25 +50,13 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
             return insets;
         });
 
-
-
-
-
-
-
-
-
-        // Button for adding, when added ---> tablayout
-        // Can be done with onClickListener
-        // TODO Also a recyclerview in oncreate
-
         Button searchButton = findViewById(R.id.searchButton);
         municipality = findViewById(R.id.editMunicipality);
         rvSearches = findViewById(R.id.rvSearch);
         updateSearches();
 
 
-       // searchButton.setOnClickListener(listener);
+
     }
 
 
@@ -103,10 +89,6 @@ public class MainActivity extends AppCompatActivity implements SearchRecyclerVie
             }
                 Search search = new Search(location);
                 SearchList.getInstance().addSearch(search);
-
-
-            // Search search = new Search(location);
-            // SearchList.getInstance().addSearch(search);
 
             updateSearches();
             } else {

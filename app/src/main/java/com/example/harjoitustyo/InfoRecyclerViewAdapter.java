@@ -49,11 +49,11 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
 
         icon = datas.get(position).getWeatherIconData();
 
+        // resize do nothing
         String url = "https://openweatherMap.org/img/w/"+icon+".png";
         Picasso.get()
                 .load(url)
                 .resize(1000,1000).centerCrop().into(holder.imageWeather);
-        // holder.weatherDescription.setText(weathers.get(position).getDescription());
     }
 
     @Override

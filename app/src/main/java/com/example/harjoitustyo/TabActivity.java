@@ -93,6 +93,8 @@ public class TabActivity extends AppCompatActivity {
 
 
 
+    // These methods are actually not needed anymore when we use objects to store datas. At least sendLocation still have a use
+    // but can access attributes not in the object
     public String sendLocation(){
         return location;
     }
@@ -102,26 +104,8 @@ public class TabActivity extends AppCompatActivity {
 
     }
 
-    public String sendWeatherTemp () {return weatherTemp;}
-
-    public String sendWeatherHumidity () {return weatherHumidity;}
-
-    public String sendWeatherWind() {return weatherWind;}
-
-
-    public String sendPopChangeData() {return popChange; }
-
     public String sendIconData() {return icon;}
 
-    // in order to return dataList we have to define datalist as private variable
-
-    public String sendJobSData() {return jobS;}
-
-    public String sendWeatherDescription(){
-        return weatherDescription;
-    }
-
-    public String sendEmploymentData() { return emp;}
 
 
 }

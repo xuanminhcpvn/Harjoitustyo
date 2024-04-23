@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+        // TODO since everything is the same and only query.json file is different,
+//      Population ja population increase can be searched with the same Retriever
+//      (only need to put ResourceID to indicate which query.json file is going to be used.
+
 public class PopulationDataRetriever {
 
 
@@ -96,14 +100,6 @@ public class PopulationDataRetriever {
                 OutputStream os = con.getOutputStream();
                 os.write(input, 0, input.length);
             }
-
-            /*
-            InputStream ins = context.getResources().openRawResource(R.raw.query);
-            JsonNode jsonInputString = objectMapper.readTree(ins);
-            ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
-            byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
-            OutputStream os = con.getOutputStream();
-            os.write(input, 0, input.length); */
 
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
             StringBuilder response = new StringBuilder();
