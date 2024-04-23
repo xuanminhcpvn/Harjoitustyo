@@ -1,42 +1,51 @@
 # Harjoitustyo
 Olio-ohjelmoinnin kurssin harjoitustyö
 
-Vaatimuksia:
+Vaatimuksia:                    Kuvaus:
 
 Oliokoodia
 
-Koodi on englanniksi
+Koodi on englanniksi            
+  
+Ohjelma toimii englanniksi       lukuunotttamatta Quiz, jossa on suomenkieliset kysymykset ja tulostettavat tekstit myös                                      suomeksi
 
-Ohjelma toimii englanniksi
+Ohjelma sisältää         
+perustoiminnallisuudet 
 
-Ohjelma sisältää perustoiminnallisuuden
+Dokumentaatio                    Käyttöliittymän kuvauksessa on kaikki samat ominaisuudet, toteutus kuitenkin eri.
+                                 Linkki Figma: https://www.figma.com/file/bsuJtqI5ykJM3qZKMkGs2V/Material-3-Design-Kit-                                       (Community)?type=design&node-id=54809-31741&mode=design&t=GNkcJADlgUuNwLt6-0.                                                Pdf muodossa myös erillisessa tiedostossa
 
-Dokumentaatio
+Pakollinen API käytössä          = **10p**
 
-API käytössä
+RecycleView                      = **3** Käytetty FragmentInfossa ja tilasto ominaisuudessa.
 
-= 10p
+Datassa näytetään myös kuvia     =>  **2** OpenWeather omia ikoneja ( luotu Picasso kirjaston avulla)
 
-RecycleView = 3
+                                  tulee lisätä  depedencies kohtaan --> implementation 'com.squareup.picasso:picasso:2.8' 
 
-Datassa näytetään myös kuvia = onko?
+Datalähteitä on enemmän kuin yksi =  **3** (Tilastotiedot + OpenWeatherData)
 
-Datalähteitä on enemmän kuin yksi = 3
+Tilastot                           (Painaessaan mainActivitissa oleva item, pääsee fragmentInfoon: Creditti SammyMohibbylle                                     vinkeistä) = **2**
 
-Datalähteitä on enemmän kuin kaksi = 2?
+Kuntien vertailu = **3**           Kuntien vertailun fragmentissa on kaksi nappula. Ensimmäinen hakee tiedot, toinen vaatii                                     että tiedot on ensin haettu(exception ei mielestäni ole vielä testattu, mutta varmuuden                                      vuoksi Search-button ensin sitten Compare-button)
 
-Datalähteitä on enemmän kuin kolme = 1?
+Visa = **4**                       8 kysymystä on haettu kunnan datalla. Oikea vastaus on tahallaan muutettu erinäköiseksi                                      testaamista varten (2 lopullinen kysymys eivät käyttää                                                                       mitään kunnan omia datoja).   
 
-Tilastot = 2?
+Fragementit = **4**                4. Fragmentti on :)
 
-Kuntien vertailu = 3
+10 + (3 + 2 + 3 + 3) + 2 + 3 + 4 + 4 
 
-Visa = 4
+total = 33
+Työtehtävät                           Vastuuhenkilöt
+Luokkakaavion määrittely               Minh Pham
+Käyttöliittymän suunnittelu            Niilo Pyykkö
+Suunnitelmien päivittäminen            Minh Pham        
+Visa Fragment                          Niilo Pyykkö
+Municipality + Political data          Niilo Pyykkö
+ComparisonFragment                     Minh Pham
+RecyclerVIew                           Minh Pham
+HakuHistoria ja sääkuva                Minh Pham 
+Muut                                   
 
-Fragementit = 4
 
-Datan visualisointi = ei ole?
 
-Peli = 1-2?
-
-total = 25?
